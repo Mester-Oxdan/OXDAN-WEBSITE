@@ -1,0 +1,8 @@
+# Ignore the entire .vs folder
+.vs/
+
+# Ignore the entire .x64 folder
+.x64/
+
+# Ignore the .x64 folder in the CONSOLE-OXDAN-DRAGON-C directory
+CONSOLE-OXDAN-DRAGON-C/.x64/
