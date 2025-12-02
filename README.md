@@ -81,6 +81,8 @@ composer require google/apiclient aws/aws-sdk-php google/recaptcha
 
 make sure vendor folder in resources folder, composor json files must be there too.
 
+Dont forget to edit env file for environment veriables otherwise all php wouldn't work. 😀
+
 Photos 2026:
 
 Main menu.
