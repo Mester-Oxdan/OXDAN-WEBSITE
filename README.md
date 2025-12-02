@@ -5,7 +5,7 @@ Oxdan Praduction Website - It's own website of Oxdan Praduction Company on html/
 
 PLEASE READ ME FIRST!!!!!!!
 
-(Installation):
+<b>(Installation):</b>
 
 1)git clone https://github.com/Mester-Oxdan/Oxdan-Dragon-Website.git (should have git commands for it).
 
@@ -13,7 +13,7 @@ OR
 
 2)Download from main Oxdan Praduction website https://oxdan.com
 
-(Bio):
+<b>(Bio):<\b>
 
 *For social media: ⤵️
 
@@ -83,7 +83,7 @@ make sure vendor folder in resources folder, composor json files must be there t
 
 Dont forget to edit env file for environment veriables otherwise all php wouldn't work. 😀
 
-Photos 2026:
+<b>Photos 2026:</b>
 
 Main menu.
 <img width="1918" height="975" alt="main_menu" src="https://github.com/user-attachments/assets/3f1a02c2-108f-490f-9ca1-fabe9bc72761" />
