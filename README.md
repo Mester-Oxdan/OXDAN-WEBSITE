@@ -71,29 +71,39 @@ little bit more commands than C/C++. This console was made for Windows! Author s
 
 creating this console only because of studying coding in 2023, but then it became a project where Author created his first program. Thanks!
 
-Photos 2024:
+If you will need parts of this project or anything about it, you must run/have:
+
+PHP 7.4 or higher
+
+Composer (PHP dependency manager)
+
+composer require google/apiclient aws/aws-sdk-php google/recaptcha
+
+make sure vendor folder in resources folder, composor json files must be there too.
+
+Photos 2026:
 
 Main menu.
-![Untitled](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/c7930e92-7a0c-45d3-82a0-49678d349b44)
+<img width="1918" height="975" alt="main_menu" src="https://github.com/user-attachments/assets/3f1a02c2-108f-490f-9ca1-fabe9bc72761" />
 
 Home preview.
-![Untitled_2](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/27adf23f-866b-4e5c-8591-fe472c1ba12b)
+<img width="1918" height="972" alt="home_preview" src="https://github.com/user-attachments/assets/b33e328d-ab4b-4a27-b4b0-30e17cd3aa88" />
 
 Home page.
-![Untitled_3](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/0a460f43-f8af-4c9c-bc8e-29ff900ba986)
+<img width="1918" height="972" alt="home_page" src="https://github.com/user-attachments/assets/d5f9aa0a-a1f4-470d-9721-5a9db8a1f4c6" />
 
 About page.
-![Untitled_4](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/ae7b23d7-a05b-423a-9185-0ef89b02a224)
+<img width="1918" height="973" alt="about_page" src="https://github.com/user-attachments/assets/25c86239-f042-4e28-8258-c8bed50fbba3" />
 
 Registration page.
-![Untitled_8](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/f4541eac-8702-4df0-82f2-d4762b15896f)
+<img width="1918" height="973" alt="registration_page" src="https://github.com/user-attachments/assets/74e8a9f1-c186-4cd4-92a7-8a7dda6d5f73" />
 
 Login page.
-![Untitled_7](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/ba2a7ffc-38c9-48b2-85d1-262b3a59abd4)
+<img width="1918" height="962" alt="login_page" src="https://github.com/user-attachments/assets/0dc75978-f9e1-482f-8865-ca14ef35f9a6" />
 
 Promo-codes page.
-![Untitled_6](https://github.com/Mester-Oxdan/OXDAN-DRAGON-WEBSITE/assets/106891875/5b4828d4-bb75-4218-9e18-268c53126adb)
+<img width="1918" height="972" alt="promo-codes_page" src="https://github.com/user-attachments/assets/b9324564-411b-4c58-a02d-2bbe1f163dd8" />
 
-Video 2024:
+Video 2026:
 
 Comming Soon...
