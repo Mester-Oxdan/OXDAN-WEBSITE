@@ -71,7 +71,7 @@ little bit more commands than C/C++. This console was made for Windows! Author s
 
 creating this console only because of studying coding in 2023, but then it became a project where Author created his first program. Thanks!
 
-If you will need parts of this project or anything about it, you must run/have:
+<b>If you will need parts of this project or anything about it, you must run/have:</b>
 
 PHP 7.4 or higher
 
