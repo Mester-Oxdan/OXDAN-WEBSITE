@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Choose your path: visit the 3D Shop for digital products or download the Oxdan Dragon console. Start exploring what Oxdan Praduction has to offer.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HOME MENU</title>
+        <link id="logo-icon" rel="icon" type="image/png" href="files/resources/images/my_dragon_ico.ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="files/css/minified/second_menu_style.min.css">
+        <script src="files/js/jquery.js"></script>
+        <script src="files/js/minified/alert_system_script.min.js"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+        <style>
+            #formContainer {
+                display: none;
+            }
+        </style>
+        <script>
+            window.onload = function () {
+                playSound();
+            };
+
+            function playSound() {
+                setTimeout(() => {
+                    document.getElementById('mySound').play();
+                    document.getElementById('mySound').addEventListener('ended', function () {
+                        document.getElementById('mySound_2').play();
+                    });
+                }, 500)
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                function getSeason(date) {
+                    const month = date.getMonth();
+
+                    if (month === 0 || month === 1 || month === 11) {
+                        return "winter";
+                    }
+                    return "other";
+                }
+        
+                function setFavicon(path) {
+                    const old = document.getElementById("logo-icon");
+                    if (old) {
+                        old.remove();
+                    }
+            
+                    const link = document.createElement("link");
+                    link.id = "logo-icon";
+                    link.rel = "icon";
+                    link.type = "image/x-icon";
+                    link.href = path + "?v=" + Date.now();
+                    document.head.appendChild(link);
+                }
+        
+                const currentSeason = getSeason(new Date());
+                if (currentSeason === "winter") {
+                    setFavicon("files/resources/images/my_dragon_winter_ico.ico");
+                } else {
+                    setFavicon("files/resources/images/my_dragon_ico.ico");
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <audio id="mySound" src="files/resources/musics/Undertale-Start-Menu.mp3"></audio>
+        <audio id="mySound_2" src="files/resources/musics/Undertale-Start-Menu.mp3"></audio>
+
+        <div id="buttons_to_show" class="bg-text_skip_button">
+            <a id="3dshopbutton" class="button button_3d_shop" onclick="redirectTo('3d_printing_shop');">3D PRINTING SHOP. 🛍️</a>
+            <a id="consoleDragonButton" class="button button_Console_dragon" onclick="redirectTo('dragon_console');">OXDAN DRAGON CONSOLE. 🔥</a>
+            <a id="listsButton" class="button button_list" onclick="redirectTo('lists');">LISTS. 📃</a>
+            <a id="faqButton" class="button button_list" onclick="redirectTo('faq');">FAQ. </a>
+            <a id="backButton" class="button button_list" onclick="redirectTo('start');">GO BACK. </a>
+        </div>
+
+        <script>
+            function redirectTo(page) {
+                const routes = {
+                    '3d_printing_shop': '/3d_printing_shop',
+                    'dragon_console': '/dragon_console',
+                    'lists': '/lists',
+                    'faq': '/faq',
+                    'start': '/start'
+                };
+                window.location.href = routes[page];
+            }
+            $(document).ready(function () {
+                console.log("[Debug] jQuery is loaded ✅");
+
+                $('#halfBox').on('click', function () {
+                    console.log("[Debug] #halfBox clicked");
+                    $('#formContainer').fadeToggle();
+                });
+
+                $('#ratingForm').on('submit', function (e) {
+                    e.preventDefault();
+                    console.log("[Debug] Form submitted");
+
+                    $('.text').fadeIn();
+                    $('#ratingForm').fadeOut();
+                });
+            });
+        </script>
+    </body>
+</html>

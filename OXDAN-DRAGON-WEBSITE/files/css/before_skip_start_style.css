@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'YourCustomFont';
+  src: url('../resources/fonts/undertale_font.woff2') format('woff2'),
+        url('../resources/fonts/undertale_font.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-family: 'YourCustomFont', sans-serif;
+}
+@keyframes example {
+  0% {
+    background-color: black;
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+#textPrompt {
+  font-family: 'YourCustomFont', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  color: white;
+  font-size: min(5.5vh, 4.35vw);
+}
+#videoContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 2000;
+}
+#video {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}

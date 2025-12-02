@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Flip to win with Ddakji — a classic Korean paper tile game made famous by Squid Game. Fun, fast-paced, and perfect for friendly challenges.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ddakji</title>
+    <link id="logo-icon" rel="icon" type="image/png" href="../../resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="../../css/minified/catalogs_style.min.css">
+    <link rel="stylesheet" href="../../css/w3.css">
+    <script src="../../js/minified/3d_printing_shop_start_script.min.js"></script>
+    <script src="../../js/minified/catalogs_start_script.min.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+    <script>
+      window.onload = function() {
+        playSound();
+      };
+      function playSound() {
+        setTimeout(() => {
+          document.getElementById('mySound').play();
+          document.getElementById('mySound').addEventListener('ended', function () {
+            document.getElementById('mySound_2').play();
+          });
+        }, 500);
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        function getSeason(date) {
+          const month = date.getMonth();
+
+          if (month === 0 || month === 1 || month === 11) {
+              return "winter";
+          }
+          return "other";
+        }
+
+        function setFavicon(path) {
+          const old = document.getElementById("logo-icon");
+          if (old) {
+              old.remove();
+          }
+  
+          const link = document.createElement("link");
+          link.id = "logo-icon";
+          link.rel = "icon";
+          link.type = "image/x-icon";
+          link.href = path + "?v=" + Date.now();
+          document.head.appendChild(link);
+        }
+
+        const currentSeason = getSeason(new Date());
+        if (currentSeason === "winter") {
+          setFavicon("../../resources/images/my_dragon_winter_ico.ico");
+        } else {
+          setFavicon("../../resources/images/my_dragon_ico.ico");
+        }
+      });
+      function updatePrice() {
+        const materialSelect = document.getElementById("materialSelect");
+        const quantitySelect = document.getElementById("quantitySelect");
+        const priceElement = document.getElementById("price");
+        
+        const selectedMaterial = parseInt(materialSelect.value);
+        const quantity = parseInt(quantitySelect.value);
+        
+        const validMaterials = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        const minQuantity = 1;
+        const maxQuantity = 25;
+        
+        let basePrice;
+        if (validMaterials.includes(selectedMaterial) && 
+          quantity >= minQuantity && 
+          quantity <= maxQuantity) {
+          
+          const priceMap = {
+              1: 1.99, 2: 1.99, 3: 1.99,
+              6: 1.99, 7: 1.99, 8: 1.99,
+              9: 1.99, 10: 1.99, 11: 1.99,
+              4: 2.99,
+              5: 4.99
+          };
+          basePrice = priceMap[selectedMaterial];
+        } else {
+          priceElement.innerHTML = "<strong>$1.99+</strong>";
+          updateDeliveryInfo();
+          return;
+        }
+        
+        const totalPrice = basePrice * quantity;
+        if (totalPrice <= 0 || !isFinite(totalPrice)) {
+          priceElement.innerHTML = "<strong>$1.99+</strong>";
+        } else {
+          priceElement.innerHTML = "<strong>$" + totalPrice.toFixed(2) + "</strong>";
+        }
+        
+        updateDeliveryInfo();
+      }
+      function updateDeliveryInfo() {
+        const deliveryInfoElement = document.getElementById("delivery");
+        
+        const currentDate = new Date();
+        const today = currentDate.getDate() + 1;
+        const between = currentDate.getDate() + 3;
+        const currentMonth = currentDate.getMonth();
+        const maxDaysInMonth = new Date(currentDate.getFullYear(), currentMonth + 1, 0).getDate();
+
+        let calculatedDeliveryDate = new Date(currentDate);
+        let calculatedDeliveryDate_2 = new Date(currentDate);
+
+        if (calculatedDeliveryDate.getMonth() !== currentDate.getMonth()) {
+          calculatedDeliveryDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        }
+
+        if (today > maxDaysInMonth) {
+          calculatedDeliveryDate.setMonth(currentDate.getMonth() + 1);
+          calculatedDeliveryDate.setDate(today - maxDaysInMonth);
+        } else {
+          calculatedDeliveryDate.setDate(today);
+        }
+
+        if (calculatedDeliveryDate_2.getMonth() !== currentDate.getMonth()) {
+          calculatedDeliveryDate_2 = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        }
+
+        if (between > maxDaysInMonth) {
+          calculatedDeliveryDate_2.setMonth(currentDate.getMonth() + 1);
+          calculatedDeliveryDate_2.setDate(between - maxDaysInMonth);
+        } else {
+          calculatedDeliveryDate_2.setDate(between);
+        }
+
+        const options = { month: 'short', day: 'numeric' };
+        const options_2 = { day: 'numeric' };
+        const deliveryDateString = calculatedDeliveryDate.toLocaleDateString('en-US', options) + "-" + calculatedDeliveryDate_2.toLocaleDateString('en-US', options_2);
+        
+        deliveryInfoElement.innerHTML = "📍 Ships from Pennsylvania\n\n<br>✅ Arrives soon! Get it by <u>" + deliveryDateString + "</u> if you order today\n\n<br>✅ Returns & exchanges accepted within 7 days\n\n<br>❌ No Free Shipping 🚚";
+      }
+    </script>
+  </head>
+  <body onload='playSound(); updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>📃 Materials: Paper, <br>Thick Paper Material <br>📐Max Size: <br>Width (X): 11 cm <br>Height (Y): 11 cm <br>Depth (Z): 0.5 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need help with something from <br>following. <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this lets talk about this Ddakji. <br>Ddakji is an old childrens game where you need <br>to flip oponent Ddakji. The basic idea is to hit your <br>opponents Ddakji 90 degrees so that it flips over. Its <br>very difficult at first, but once you get the trick, you <br>will win every time. ");'>
+    <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
+    <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
+    <div class="container">
+      <div class="catalog-media">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_1.webp" alt="1st Ddakji image" class="active" id="test12">
+        <video src="../../resources/video/3d_printing_shop_video/toys/ddakji/ddakji_video.mp4"></video>
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_2.webp" alt="2nd Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_3.webp" alt="3rd Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_4.webp" alt="4th Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_5.webp" alt="5th Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_6.webp" alt="6th Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_7.webp" alt="7th Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_8.webp" alt="8th Ddakji image">
+        <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_9.webp" alt="9th Ddakji image">
+      </div>
+      <div class="catalog-details">
+        <div class="main-media">
+          <img src="../../resources/images/3d_printing_shop_images/toys/ddakji/ddakji_1.webp" alt="Main Ddakji image">
+          <script>
+            const thumbnails = document.querySelectorAll(".catalog-media img, .catalog-media video");
+            const mainMedia = document.querySelector(".main-media");
+            const overlay = document.createElement("div");
+            overlay.classList.add("overlay");
+            let currentIndex = 0;
+            let mediaElement;
+            function showNormalArrows_2() {
+              mainMedia.appendChild(leftArrow);
+              mainMedia.appendChild(rightArrow);
+            }
+            function addDescription(descriptionText) {
+              const existingDescription = document.querySelector('.image-description');
+              if (existingDescription) {
+                existingDescription.remove();
+              }
+              const description = document.createElement("p");
+              description.classList.add("image-description");
+              description.innerHTML = descriptionText;
+              const descriptionContainer = document.querySelector(".product-description");
+              descriptionContainer.appendChild(description);
+            }
+            function handleButtonClick() {
+              const button = document.getElementById('heart_favorite');
+              const isActive = button.classList.contains('active');
+              
+              toggleFavoriteDB(5).then(newState => {
+                if (newState !== null) {
+                  if (newState) {
+                    button.classList.add('active');
+                  } else {
+                    button.classList.remove('active');
+                  }
+                }
+              });
+            }
+            function initializeButtonState() {
+              const button = document.getElementById('heart_favorite');
+              getFavoriteStateDB(5).then(isFavorite => {
+                if (isFavorite) {
+                  button.classList.add('active');
+                } else {
+                  button.classList.remove('active');
+                }
+              });
+            }
+          </script>
+        </div>
+        <div class="product-description">
+          <h2><b style="font-size: min(4vh, 2.85vw);">Ddakji</b>
+            <button id="heart_favorite" class="like-button">
+              <div class="like-wrapper">
+                <div class="ripple"></div>
+                <svg class="heart" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+                </svg>
+                <div class="particles" style="--total-particles: 6">
+                  <div class="particle" style="--i: 1; --color: #7642F0"></div>
+                  <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+                  <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+                  <div class="particle" style="--i: 4; --color: #D0516B"></div>
+                  <div class="particle" style="--i: 5; --color: #5686F2"></div>
+                  <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <p id="price" class="price"><strong>$1.99+</strong></p>
+          <p class="description" style="font-size: min(2.1vh, 1vw);">Tags: Paper, Ddakji, Korea, Game. </p>
+          <p id="delivery" style="z-index: 2; font-size: min(2.1vh, 1vw);"></p>
+          <a><br>Color Options<a class="red_point">*</a><br></a>
+          <div class="custom-select">
+            <select id="materialSelect" onchange="updatePrice()">
+              <option value="" disabled selected>Select an option </option>
+              <option value="1">Red</option>
+              <option value="2">Blue</option>
+              <option value="3">White</option>
+              <option value="4">Combo Red, Blue ($2.99)</option>
+              <option value="5">Combo Red, Blue, White ($4.99)</option>
+              <option value="6">Orange</option>
+              <option value="7">Yellow</option>
+              <option value="8">Green</option>
+              <option value="9">Brown</option>
+              <option value="10">Pink</option>
+              <option value="11">Black</option>
+            </select>
+          </div>
+          <a><br>Quantity<a class="red_point">*</a><br></a>
+          <div class="custom-select">
+            <select id="quantitySelect" onchange="updatePrice()">
+              <option value="" disabled selected>Select an option </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+            </select>
+          </div>
+          <button class="button_buy" id="slideButton" style='font-family: Arial, sans-serif;'> See Online Shops! </button>
+          <style>
+            #slideBox {
+              position: absolute;
+              left: 94vw;
+              bottom: 15vh;
+              font-size: 13px;
+              opacity: 0;
+              transform: translate(-100%, 100%);
+              background-color: #fff;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              overflow: hidden;
+              transition: transform 0.4s ease, opacity 0.5s ease;
+            }
+            #slideBox.show {
+              transform: translate(-100%, 34vh);
+              opacity: 1;
+              z-index: 2;
+            }
+            #slideBox p {
+              margin-left: 10px;
+              margin-right: 10px;
+              white-space: nowrap;
+              z-index: 2;
+            }
+          </style>
+          <div id="slideBox">
+            <p><b>Available Shops: ⤵️</b><br>
+              *TikTok Shop: <a href="https://www.tiktok.com/t/ZT2UNHUAh/" target="_blank">https://www.tiktok.com/t/ZT2UNHUAh/</a> 🛒<br>
+              *Shopify: <a href="https://933791-66.myshopify.com/products/oxdan-praduction-ddakji-nice-korean-game" target="_blank">link is too large, click me instead.</a> 🛒<br>
+              <br>
+              <b>Contact Info: ⤵️</b><br>
+              *Phone: <u>+1 (412) 908-9359</u> 📞<br>
+              *Email: <u>boterewertyu@gmail.com</u> ✉️
+              <br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <script>
+      function createItemContainer(product) {
+        const itemContainer = document.createElement('div');
+        itemContainer.classList.add('search-item');
+        itemContainer.style.backgroundImage = `url(${product.image})`;
+        itemContainer.style.backgroundSize = 'cover';
+        itemContainer.style.backgroundPosition = 'center';
+        itemContainer.style.cursor = 'pointer';
+        itemContainer.style.zIndex = '1';
+        
+        const name = document.createElement('a');
+        name.innerHTML = product.name;
+        itemContainer.appendChild(name);
+        
+        const price = document.createElement('b');
+        price.innerHTML = product.price;
+        itemContainer.appendChild(price);
+        
+        const description = document.createElement('p');
+        description.innerHTML = product.description ? product.description : '';
+        itemContainer.appendChild(description);
+        
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('like-button');
+        heartButton.innerHTML = `
+        <div class="like-wrapper">
+          <div class="ripple"></div>
+          <svg class="heart" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+          </svg>
+          <div class="particles" style="--total-particles: 6">
+            <div class="particle" style="--i: 1; --color: #7642F0"></div>
+            <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+            <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+            <div class="particle" style="--i: 4; --color: #D0516B"></div>
+            <div class="particle" style="--i: 5; --color: #5686F2"></div>
+            <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+          </div>
+        </div>
+        </h2>`;
+        
+        heartButton.style.right = "10px";
+        heartButton.addEventListener('click', async (event) => {
+          event.stopPropagation();
+          
+          const newState = await toggleFavoriteDB(product.number);
+          if (newState !== null) {
+            if (newState) {
+              heartButton.classList.add('active');
+            } else {
+              heartButton.classList.remove('active');
+            }
+          }
+        });
+      
+        getFavoriteStateDB(product.number).then(isFavorite => {
+          if (isFavorite) {
+            heartButton.classList.add('active');
+          } else {
+            heartButton.classList.remove('active');
+          }
+        });
+        
+        itemContainer.appendChild(heartButton);
+        itemContainer.addEventListener('click', () => {
+            window.location.href = getProductLink(product);
+        });
+        
+        return itemContainer;
+      }
+      
+      function getProductLink(product) {
+        let cleanUrl = product.url.replace(/^files\/catalogs_html\//, '');
+        
+        const finalUrl = '../' + cleanUrl;
+        
+        return finalUrl;
+      }
+      
+      function getSuggestions(target, catalog) {
+        return catalog.filter(product =>
+          product.name !== target.name &&
+          product.category &&
+          target.category.some(cat => product.category.includes(cat))
+        );
+      }
+      
+      function renderSuggestions(suggestions) {
+        const searchResultsContainer = document.getElementById("searchResults_12");
+      
+        searchResultsContainer.innerHTML = '';
+      
+        suggestions.forEach(product => {
+          if (!product.image || !product.name || !product.price) {
+            console.warn("Invalid product data:", product);
+            return;
+          }
+      
+          let adjustedImagePath = product.image;
+          if (product.image.includes('../files/')) {
+            adjustedImagePath = product.image.replace('../files/', '../../../files/');
+          }
+      
+          const productWithAdjustedPaths = {
+            ...product,
+            image: adjustedImagePath,
+          };
+      
+          const productItem = createItemContainer(productWithAdjustedPaths);
+          searchResultsContainer.appendChild(productItem);
+        });
+      }
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        loadProducts().then(products => {
+          const targetProduct = {
+            name: 'Ddakji',
+            category: ['toys'],
+            folder: 'toys',
+            image: '../files/resources/images/3d_printing_shop_images/toys/ddakji/ddakji_1.webp',
+            price: '$1.99+',
+            number: 5,
+            url: `../../files/catalogs_html/toys/Ddakji.html`,
+          };
+      
+          const suggestions = getSuggestions(targetProduct, products);
+          renderSuggestions(suggestions);
+        });
+      });
+      
+      async function loadProducts() {
+        const response = await fetch("../../php/get_products.php");
+        const products = await response.json();
+        return products;
+      }
+    </script>
+    <b class="May_like">You May Also Like: ⤵️</b>
+    <div class="rounded-line"></div>
+    <div id="searchResults_12"></div>
+    <div class="overlay">
+      <span class="arrow left">&#10094;</span>
+      <span class="arrow right">&#10095;</span>
+    </div>
+  </body>
+</html>

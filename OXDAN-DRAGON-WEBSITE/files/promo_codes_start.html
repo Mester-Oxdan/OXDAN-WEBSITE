@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Unlock exclusive promo codes, special offers, and hidden secrets at Oxdan Praduction. Save big and enjoy exclusive deals today!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMO CODES</title>
+    <link id="logo-icon" rel="icon" type="image/png" href="files/resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="files/css/minified/promo_codes_start_style.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function getSeason(date) {
+          const month = date.getMonth();
+
+          if (month === 0 || month === 1 || month === 11) {
+            return "winter";
+          }
+          return "other";
+        }
+
+        function setFavicon(path) {
+          const old = document.getElementById("logo-icon");
+          if (old) {
+            old.remove();
+          }
+  
+          const link = document.createElement("link");
+          link.id = "logo-icon";
+          link.rel = "icon";
+          link.type = "image/x-icon";
+          link.href = path + "?v=" + Date.now();
+          document.head.appendChild(link);
+        }
+
+        const currentSeason = getSeason(new Date());
+        if (currentSeason === "winter") {
+          setFavicon("files/resources/images/my_dragon_winter_ico.ico");
+        } else {
+          setFavicon("files/resources/images/my_dragon_ico.ico");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <audio id="mySound_promo" src="files/resources/musics/waterfall.mp3"></audio>
+    <a class="text_promo_code" style='font-family: Arial, sans-serif;'>Enter promo-code: </a>
+    <input type="text" id="command" style='font-family: Arial, sans-serif;' placeholder="Promo-code here">
+    <div class="button_submit_text">
+      <button class="button_1 button_Submit_1" id="submit" style='font-family: Arial, sans-serif;'> SUBMIT </button>
+      <button onclick="history.go(-1)" class="button_2 button_Submit_2" target="_blank" style='font-family: Arial, sans-serif;'> EXIT </button>
+    </div>
+    <div id="output"></div>
+    <script src="files/js/jquery.js"></script>
+    <script src="files/js/minified/alert_system_script.min.js"></script>
+    <script src="files/js/minified/promo_codes_start_script.min.js"></script>
+  </body>
+</html>

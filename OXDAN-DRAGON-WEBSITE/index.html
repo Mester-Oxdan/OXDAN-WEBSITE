@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Get started with Oxdan Praduction today! Shop at our store and download our products for free — no sign-up needed. Enjoy a wonderful time and exclusive offers, just for you.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OXDAN WEBSITE</title>
+    <link id="logo-icon" rel="icon" type="image/png" href="files/resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="files/css/minified/index_style.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function getSeason(date) {
+          const month = date.getMonth();
+          return (month === 11 || month === 0 || month === 1) ? "winter" : "other";
+        }
+
+        function setFavicon(path) {
+          const old = document.getElementById("logo-icon");
+          if (old) old.remove();
+
+          const link = document.createElement("link");
+          link.id = "logo-icon";
+          link.rel = "icon";
+          link.type = "image/x-icon";
+          link.href = path + "?v=" + Date.now();
+          document.head.appendChild(link);
+        }
+
+        function applySeasonClassToBackground(season) {
+          const bgElement = document.querySelector(".bg_image_dragon");
+          if (!bgElement) return;
+          bgElement.classList.add(season);
+        }
+
+        const currentSeason = getSeason(new Date());
+
+        if (currentSeason === "winter") {
+          setFavicon("files/resources/images/my_dragon_winter_ico.ico");
+        } else {
+          setFavicon("files/resources/images/my_dragon_ico.ico");
+        }
+
+        applySeasonClassToBackground(currentSeason);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="bg_image_dragon"></div>
+    <div class="bg-text">
+      <div class="container">
+        <div class="header" style="font-family: Arial, sans-serif;">
+          CHOOSE OPTION:
+        </div>
+        <div id="nav">
+          <ul>
+            <li onclick="redirectTo('register');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">REGISTRATION</li>
+            <li onclick="redirectTo('login');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">LOGIN</li>
+            <li onclick="redirectTo('skip');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">SKIP</li>
+            <li onclick="window.history.back();" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">EXIT</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      function redirectTo(page) {
+        const routes = {
+          'register': '/register',
+          'login': '/login',
+          'skip': '/skip'
+        };
+        window.location.href = routes[page];
+      }
+    </script>
+  </body>
+</html>

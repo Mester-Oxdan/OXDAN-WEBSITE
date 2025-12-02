@@ -1,0 +1,6 @@
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-Python-1-2024-Setup.exe filter=lfs diff=lfs merge=lfs -text
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-Python-1-2024-Files.zip filter=lfs diff=lfs merge=lfs -text
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-C-1-2024-Setup.zip filter=lfs diff=lfs merge=lfs -text
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-C-1-2024-Setup.exe filter=lfs diff=lfs merge=lfs -text
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-C-1-2024-Files.zip filter=lfs diff=lfs merge=lfs -text
+OXDAN-DRAGON-WEBSITE/files/php/path_to_zip_files/Oxdan-Dragon-Console-Python-1-2024-Setup.zip filter=lfs diff=lfs merge=lfs -text

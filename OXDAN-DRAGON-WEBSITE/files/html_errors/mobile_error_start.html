@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MOBILE ERROR</title>
+        <link id="logo-icon" rel="icon" type="image/png" href="../resources/images/my_dragon_ico.ico">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+        <style>
+            body {
+                background-color: black;
+                overflow-x: hidden;
+                overflow-y: visible;
+            }
+            .position_error {
+                position: absolute;
+                left: 39.5vw;
+                top: 0vh;
+                width: 20vw;
+            }
+            .error_title,
+            .error_text,
+            .error_text_2 {
+                color: white;
+                font-size: 3.33vw;
+                font-family: Arial, sans-serif;
+                position: absolute;
+            }
+            .error_title {
+                left: 40.5vw;
+                top: 18vh;
+            }
+            .error_text {
+                left: 15vw;
+                top: 28vh;
+            }
+            .error_text_2 {
+                left: 36.9vw;
+                top: 45vh;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function getSeason(date) {
+                    const month = date.getMonth();
+
+                    if (month === 0 || month === 1 || month === 11) {
+                        return "winter";
+                    }
+                    return "other";
+                }
+
+                function setFavicon(path) {
+                    const old = document.getElementById("logo-icon");
+                    if (old) {
+                        old.remove();
+                    }
+            
+                    const link = document.createElement("link");
+                    link.id = "logo-icon";
+                    link.rel = "icon";
+                    link.type = "image/x-icon";
+                    link.href = path + "?v=" + Date.now();
+                    document.head.appendChild(link);
+                }
+
+                const currentSeason = getSeason(new Date());
+                if (currentSeason === "winter") {
+                    setFavicon("files/resources/images/my_dragon_winter_ico.ico");
+                } else {
+                    setFavicon("files/resources/images/my_dragon_ico.ico");
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <img class="position_error" src="../resources/images/error_video.gif">
+        <a class="error_title">Mobile Error:</a>
+        <a class="error_text">Sorry, there was a technical problem loading your <br>site version. Please wait while we fix this problem.</a>
+        <a class="error_text_2">(Oxdan Production.)</a>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<?php include 'php/auth.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTRO</title>
+    <link id="logo-icon" rel="icon" type="image/png" href="files/resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="files/css/minified/before_skip_start_style.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
+    <script>
+      window.CSRF_TOKEN = '<?php echo $_SESSION["csrf_token"] ?? ""; ?>';
+      document.addEventListener("DOMContentLoaded", function () {
+        function getSeason(date) {
+          const month = date.getMonth();
+
+          if (month === 0 || month === 1 || month === 11) {
+              return "winter";
+          }
+          return "other";
+        }
+
+        function setFavicon(path) {
+          const old = document.getElementById("logo-icon");
+          if (old) {
+              old.remove();
+          }
+  
+          const link = document.createElement("link");
+          link.id = "logo-icon";
+          link.rel = "icon";
+          link.type = "image/x-icon";
+          link.href = path + "?v=" + Date.now();
+          document.head.appendChild(link);
+        }
+
+        const currentSeason = getSeason(new Date());
+        if (currentSeason === "winter") {
+          setFavicon("files/resources/images/my_dragon_winter_ico.ico");
+        } else {
+          setFavicon("files/resources/images/my_dragon_ico.ico");
+        }
+      });
+    </script>
+  </head>
+  <body id="body">
+    <div id="textPrompt" class="centered">
+      <p>Press anything to continue</p>
+    </div>
+    <div id="videoContainer">
+      <video id="video">
+        <source src="files/resources/video/oxdan_intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  <script src="files/js/minified/before_skip_start_login_script.min.js"></script>
+  </body>
+</html>
