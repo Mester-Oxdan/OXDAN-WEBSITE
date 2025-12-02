@@ -13,7 +13,7 @@ OR
 
 2)Download from main Oxdan Praduction website https://oxdan.com
 
-<b>(Bio):<\b>
+<b>(Bio):</b>
 
 *For social media: ⤵️
 
