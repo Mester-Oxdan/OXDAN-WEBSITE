@@ -49,7 +49,7 @@ OR
 
 *Thanks: 🙏😊
 
-(About):
+<b>(About):</b>
 
 !REMEMBER! Author don't care and he is not responsible for your deals in this console. This console was created for learning programing and testing security. You
 
@@ -106,6 +106,6 @@ Login page.
 Promo-codes page.
 <img width="1918" height="972" alt="promo-codes_page" src="https://github.com/user-attachments/assets/b9324564-411b-4c58-a02d-2bbe1f163dd8" />
 
-Video 2026:
+<b>Video 2026:</b>
 
 Comming Soon...
