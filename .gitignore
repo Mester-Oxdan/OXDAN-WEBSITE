@@ -1,7 +1,4 @@
-.env
 **/vendor/
 **/composer.lock
 **/composer.json
 **/.env
-OXDAN-DRAGON-WEBSITE/.htaccess
-OXDAN-DRAGON-WEBSITE/files/resources/vendor/
