@@ -1,0 +1,38 @@
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteBase /
+
+RewriteRule ^register/?$ files/registration_start.php [L]
+RewriteRule ^login/?$ files/login_start.php [L]
+RewriteRule ^skip/?$ files/second_menu_start.html [L]
+RewriteRule ^home/?$ files/skip_start.html [L]
+RewriteRule ^promo_codes/?$ files/promo_codes_start.html [L]
+RewriteRule ^about/?$ files/about_start.html [L]
+RewriteRule ^about_login/?$ files/about_start_login.php [L]
+RewriteRule ^skip_login/?$ files/second_menu_start_login.php [L]
+RewriteRule ^home_login/?$ files/skip_start_login.php [L]
+RewriteRule ^3d_printing_shop/?$ files/3d_printing_shop_start.html [L]
+RewriteRule ^dragon_console/?$ files/before_skip_start.html [L]
+RewriteRule ^lists/?$ files/lists_start.html [L]
+RewriteRule ^faq/?$ files/faq_start.html [L]
+RewriteRule ^3d_printing_shop_login/?$ files/3d_printing_shop_start_login.php [L]
+RewriteRule ^dragon_console_login/?$ files/before_skip_start_login.php [L]
+RewriteRule ^change_password_login/?$ files/change_password_start_login.php [L]
+RewriteRule ^change_password/?$ files/change_password_start.php [L]
+RewriteRule ^confirm_email/?$ files/confirm_email_start.php [L]
+RewriteRule ^confirm_email_new/?$ files/confirm_email_new_password_start.php [L]
+RewriteRule ^start/?$ index.html [L]
+
+# Block sensitive and executable files
+<FilesMatch "(\.env|\.ini|\.cfg|\.config|\.sql|\.db|\.sqlite|\.log|\.phtml|\.pl|\.py|\.rb|\.htaccess|\.htpasswd|\.pem|\.crt|\.pfx|\.txt|\.json|\.lock|\.exe|\.bat|\.sh|\.com|\.cmd|\.msi|\.scr|\.pif|\.jar)$">
+    Require all denied
+</FilesMatch>
+
+# Block double extensions (e.g., file.php.txt)
+<FilesMatch ".*\.(php|phtml|pl|py|rb|sh|exe)\.">
+    Require all denied
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
