@@ -5,7 +5,7 @@ async function confirm_email(e) {
         csrf_token: window.CSRF_TOKEN
     };
     
-    fetch("../files/php/confirm_email_new_password.php", {
+    fetch("/api/confirm_email_new_password.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(r)
@@ -85,7 +85,7 @@ function resendEmail() {
     e.style.pointerEvents = "none";
     e.style.opacity = "0.5";
     
-    fetch("../files/php/resend_email.php", {
+    fetch("/api/resend_email.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ type: 'password_reset', csrf_token: window.CSRF_TOKEN })

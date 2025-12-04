@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -137,7 +137,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_08(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic,<br> PLA Plastic Material, <br>PETG Plastic Material.<br> Max Dimension is 50 cm <br> <br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order. <br>Custom Options: Any Text with limit <br>of 50 characters, Any Font provide name or <br>font file, Color we have same price for each <br>color, <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this Custom 3d Print. This catalog <br>is created for you to create future to life! All what you <br>need is stl file of your model and dimensions or scale. <br>Thank you!");'>
+  <body onload=' updatePrice(); showNormalArrows_08(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic,<br> PLA Plastic Material, <br>PETG Plastic Material.<br> Max Dimension is 50 cm <br> <br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order. <br>Custom Options: Any Text with limit <br>of 50 characters, Any Font provide name or <br>font file, Color we have same price for each <br>color, <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this Custom 3d Print. This catalog <br>is created for you to create future to life! All what you <br>need is stl file of your model and dimensions or scale. <br>Thank you!");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -451,7 +451,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -465,3 +465,4 @@
     </div>
   </body>
 </html>
+

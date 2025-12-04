@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -130,7 +130,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 9.5 cm <br>Height (Y): 12 cm <br>Depth (Z): 2 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need help with something from <br>following. <b>Material</b> PLA Or PETG. Thanks, <br>now lets talk about this Flying Stone. Flying<br> Stone is an old childrens game where you shoot <br>a stone and try to hit a target. Set a target and move <br>at least 3 steps away, then shoot the stone at the target <br>and hit it! This game is 5+. Please be careful with the <br>walls, be smart and dont break anything in the house.");'>
+  <body onload=' updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 9.5 cm <br>Height (Y): 12 cm <br>Depth (Z): 2 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need help with something from <br>following. <b>Material</b> PLA Or PETG. Thanks, <br>now lets talk about this Flying Stone. Flying<br> Stone is an old childrens game where you shoot <br>a stone and try to hit a target. Set a target and move <br>at least 3 steps away, then shoot the stone at the target <br>and hit it! This game is 5+. Please be careful with the <br>walls, be smart and dont break anything in the house.");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -438,7 +438,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -452,3 +452,4 @@
     </div>
   </body>
 </html>
+

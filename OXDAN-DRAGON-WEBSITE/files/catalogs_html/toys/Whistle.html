@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -146,7 +146,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 2.6 cm <br>Height (Y): 1.7 cm <br>Depth (Z): 4.5 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order.<br> If you need help with something from following. <br><b>Material</b> PLA Or PETG. Thanks, now lets talk<br> about this Whistle. Whistle is mainly used by <br>referees to referee games. Anyone can use <br>the whistle for fun or to referee games. <br>We provide many different colors and free <br> metal ring. Have fun and have a wonderful day!");'>
+  <body onload=' updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 2.6 cm <br>Height (Y): 1.7 cm <br>Depth (Z): 4.5 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order.<br> If you need help with something from following. <br><b>Material</b> PLA Or PETG. Thanks, now lets talk<br> about this Whistle. Whistle is mainly used by <br>referees to referee games. Anyone can use <br>the whistle for fun or to referee games. <br>We provide many different colors and free <br> metal ring. Have fun and have a wonderful day!");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -469,7 +469,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -483,3 +483,4 @@
     </div>
   </body>
 </html>
+

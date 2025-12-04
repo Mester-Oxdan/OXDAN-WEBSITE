@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', loadFaqs);
 
 function loadFaqs(query = '') {
-    fetch(`../files/php/search.php?query=${encodeURIComponent(query)}`)
+    fetch(`/api/search.php?query=${encodeURIComponent(query)}`)
         .then(response => response.json())
         .then(data => {
             const faqList = document.getElementById('faqList');

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Find answers to common questions about Oxdan Production. Learn how things work, get help, and explore helpful tips.">
+    <title>FAQ - Oxdan Production</title>
+    <link rel="icon" href="/files/resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="/files/css/premium_design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/files/js/jquery.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .page-hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 60px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-hero p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+        }
+
+        .search-box {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 18px 24px;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 40px;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .faq-item {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            padding: 24px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .faq-answer-inner {
+            padding: 0 30px 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: white;
+        }
+
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">OXDAN</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/faq" style="opacity: 1;">FAQ</a></li>
+            <li><a href="/lists">Lists</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-hero">
+        <h1>FAQ</h1>
+        <p>Find answers to common questions</p>
+    </div>
+
+    <div class="faq-container">
+        <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <input type="text" class="search-box" id="searchBar" placeholder="Search questions..." onkeyup="filterFAQs()">
+
+        <div id="faqList">
+            <!-- FAQ items will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>📞 +1 (412) 908-9359 &nbsp;|&nbsp; ✉️ bogerter4521de@gmail.com</p>
+        <p style="margin-top: 10px;">© 2024 Oxdan Production. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Default FAQs (fallback if database is unavailable)
+        const defaultFAQs = [
+            { question: "What is Dragon Console?", answer: "Dragon Console is a powerful terminal-based software for Windows. It comes in C/C++ and Python versions, offering various utilities, tools, and games for developers and enthusiasts." },
+            { question: "How do I download the console?", answer: "Visit the Console section on our homepage. Accept the Terms of Service, then choose between the C/C++ or Python version. You can download either as an installer or raw files." },
+            { question: "What products are in the shop?", answer: "Our 3D Printing Shop offers handcrafted items including custom keychains, flower pots, toys like Gonggi and Ddakji, and custom 3D print services. All items ship from Pennsylvania." },
+            { question: "How do I contact support?", answer: "You can reach us at +1 (412) 908-9359 or email bogerter4521de@gmail.com. We typically respond within 24 hours." },
+            { question: "How can I donate?", answer: "We accept donations via Cash App ($BoHladii or 4403 9352 3234 1307) and Buy Me A Coffee (buymeacoffee.com/oxdan). Thank you for your support!" },
+            { question: "What payment methods are accepted?", answer: "For the shop, we accept payments through our TikTok Shop and Shopify store. For donations, you can use Cash App or Buy Me A Coffee." },
+            { question: "How do I become a Helper?", answer: "Report bugs in the website, Dragon Console, or other Oxdan apps. Each report earns points based on bug importance. Top helpers are featured on our Lists page!" },
+            { question: "What are the shipping times?", answer: "All 3D printed items ship from Pennsylvania, USA. Standard delivery takes 3-5 business days. Returns are accepted within 7 days." },
+            { question: "Is the console free?", answer: "Yes! The Dragon Console is completely free to download and use. Just accept the Terms of Service to get started." },
+            { question: "How do I register an account?", answer: "Click the Login button in the navigation, then click Register. Fill in your details and verify your email to complete registration." }
+        ];
+
+        let faqs = [];
+
+        // Try to load FAQs from database, fallback to defaults
+        async function loadFAQs() {
+            try {
+                const response = await fetch('/api/search.php?query=');
+                const data = await response.json();
+                if (data && data.length > 0 && !data.error) {
+                    faqs = data;
+                } else {
+                    faqs = defaultFAQs;
+                }
+            } catch (e) {
+                faqs = defaultFAQs;
+            }
+            renderFAQs(faqs);
+        }
+
+        function renderFAQs(items) {
+            const container = document.getElementById('faqList');
+            container.innerHTML = items.map((faq, i) => `
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>${faq.question}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">${faq.answer}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Animate in
+            gsap.fromTo('.faq-item',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, stagger: 0.05 }
+            );
+        }
+
+        function toggleFAQ(el) {
+            el.classList.toggle('active');
+        }
+
+        function filterFAQs() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const filtered = faqs.filter(faq =>
+                faq.question.toLowerCase().includes(query) ||
+                faq.answer.toLowerCase().includes(query)
+            );
+            renderFAQs(filtered);
+        }
+
+        // Load on page ready
+        document.addEventListener('DOMContentLoaded', loadFAQs);
+    </script>
+</body>
+
+</html>

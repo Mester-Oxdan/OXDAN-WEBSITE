@@ -1,7 +1,7 @@
 let products = [];
 
 async function loadProducts(category = 'all', search = '') {
-  const response = await fetch(`../files/php/get_products.php?category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`);
+  const response = await fetch(`/api/get_products.php?category=${encodeURIComponent(category)}&search=${encodeURIComponent(search)}`);
   products = await response.json();
   displayAllProducts(category);
 }
@@ -21,17 +21,7 @@ function getUserToken() {
 }
 
 function getBasePath() {
-  const currentPath = window.location.pathname;
-  
-  if (currentPath.includes('/catalogs_html/') || 
-    currentPath.includes('/toys/') ||
-    currentPath.includes('/key chains/') || 
-    currentPath.includes('/flower pots/')) {
-    return '../../php/';
-  }
-  else {
-    return '../files/php/';
-  }
+  return '/api/';
 }
 const basePath = getBasePath();
 async function generateSecureToken() {
@@ -41,7 +31,7 @@ async function generateSecureToken() {
       credentials: 'include'
     });
     const result = await response.json();
-    
+
     if (result.success) {
       localStorage.setItem('user_token', result.user_token);
       return result.user_token;
@@ -54,10 +44,10 @@ async function generateSecureToken() {
 async function toggleFavoriteDB(productId) {
   try {
     let userToken = getUserToken();
-    
+
     const response = await fetch(`${basePath}favorites_manager.php?action=toggle`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({
         product_id: productId,
@@ -65,11 +55,11 @@ async function toggleFavoriteDB(productId) {
       })
     });
     const result = await response.json();
-    
+
     if (result.user_token) {
       localStorage.setItem('user_token', result.user_token);
     }
-    
+
     return result.success ? result.favorite : null;
   } catch (error) {
     return null;
@@ -82,13 +72,13 @@ async function getFavoriteStateDB(productId) {
     if (!userToken) {
       return false;
     }
-    
+
     const response = await fetch(`${basePath}favorites_manager.php?action=get&product_id=${productId}`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_token: userToken })
     });
-    
+
     const result = await response.json();
     return result.success ? result.favorite : false;
   } catch (error) {
@@ -99,7 +89,7 @@ async function getFavoriteStateDB(productId) {
 function displayAllProducts(category) {
   const searchResults = document.getElementById('searchResults');
   if (!searchResults) {
-    return; 
+    return;
   }
   searchResults.innerHTML = '';
   const filteredProducts = category === 'all' || category === '' ? products : products.filter(product => product.category.includes(category));
@@ -123,19 +113,19 @@ function createItemContainer(product) {
   itemContainer.style.backgroundPosition = 'center';
   itemContainer.style.cursor = 'pointer';
   itemContainer.style.zIndex = '1';
-  
+
   const name = document.createElement('a');
   name.innerHTML = product.name;
   itemContainer.appendChild(name);
-  
+
   const price = document.createElement('b');
   price.innerHTML = product.price;
   itemContainer.appendChild(price);
-  
+
   const description = document.createElement('p');
   description.innerHTML = product.description ? product.description : '';
   itemContainer.appendChild(description);
-  
+
   const heartButton = document.createElement('button');
   heartButton.classList.add('like-button');
   heartButton.innerHTML = `
@@ -153,34 +143,34 @@ function createItemContainer(product) {
       <div class="particle" style="--i: 6; --color: #D53EF3"></div>
     </div>
   </div>`;
-  
+
   heartButton.style.right = "10px";
-  
+
   getFavoriteStateDB(product.number).then(isFavorite => {
-      if (isFavorite) {
+    if (isFavorite) {
+      heartButton.classList.add('active');
+    } else {
+      heartButton.classList.remove('active');
+    }
+  });
+
+  heartButton.addEventListener('click', async (event) => {
+    event.stopPropagation();
+
+    const newState = await toggleFavoriteDB(product.number);
+
+    if (newState !== null) {
+      if (newState) {
         heartButton.classList.add('active');
       } else {
         heartButton.classList.remove('active');
       }
-  });
-  
-  heartButton.addEventListener('click', async (event) => {
-      event.stopPropagation();
-  
-      const newState = await toggleFavoriteDB(product.number);
-      
-      if (newState !== null) {
-          if (newState) {
-            heartButton.classList.add('active');
-          } else {
-            heartButton.classList.remove('active');
-          }
-          
-          const toggleSwitch = document.getElementById('toggleFavorite');
-          if (toggleSwitch.checked) {
-            displayFavoriteProducts();
-          }
+
+      const toggleSwitch = document.getElementById('toggleFavorite');
+      if (toggleSwitch.checked) {
+        displayFavoriteProducts();
       }
+    }
   });
 
   itemContainer.appendChild(heartButton);
@@ -188,7 +178,7 @@ function createItemContainer(product) {
     addToSearchHistory(product.name);
     window.location.href = getProductLink(product);
   });
-  
+
   return itemContainer;
 }
 
@@ -200,7 +190,7 @@ function getProductLink(product) {
 
 const categorySelect = document.getElementById('categorySelect');
 if (categorySelect) {
-  categorySelect.addEventListener('change', function() {
+  categorySelect.addEventListener('change', function () {
     search();
   });
 }
@@ -213,12 +203,12 @@ function search() {
 
   searchResults.innerHTML = '';
   let foundProducts = products.filter(product => {
-      if (category === 'all' || category === '') {
-        return product.name.toLowerCase().startsWith(searchInput);
-      } else if (product.category.includes(category)) {
-        return product.name.toLowerCase().startsWith(searchInput);
-      }
-      return false;
+    if (category === 'all' || category === '') {
+      return product.name.toLowerCase().startsWith(searchInput);
+    } else if (product.category.includes(category)) {
+      return product.name.toLowerCase().startsWith(searchInput);
+    }
+    return false;
   });
 
   if (toggleSwitch.checked) {
@@ -238,7 +228,7 @@ function search() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('test').click();
 });
 
@@ -257,10 +247,10 @@ function loadSearchHistory() {
 }
 
 loadSearchHistory();
-document.getElementById('searchInput').addEventListener('keypress', function(event) {
-if (event.key === 'Enter') {
-  search();
-}
+document.getElementById('searchInput').addEventListener('keypress', function (event) {
+  if (event.key === 'Enter') {
+    search();
+  }
 });
 
 let suggestionsEnabled = false;
@@ -312,25 +302,25 @@ function toggleFavoriteItems() {
 async function displayFavoriteProducts() {
   const searchResults = document.getElementById('searchResults');
   searchResults.innerHTML = '';
-  
+
   const userToken = getUserToken();
   if (!userToken) {
     searchResults.textContent = 'No favorite items found.';
     return;
   }
-  
+
   try {
     const response = await fetch(`${basePath}favorites_manager.php?action=list`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify({ user_token: userToken })
     });
     const result = await response.json();
-    
+
     if (result.success) {
       const favoriteProducts = result.favorites;
-      
+
       if (favoriteProducts.length === 0) {
         searchResults.textContent = 'No favorite items found.';
       } else {

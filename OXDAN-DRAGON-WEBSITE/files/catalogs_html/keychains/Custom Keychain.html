@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -133,7 +133,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_89(); initializeButtonState(); addDescription("✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 24 cm <br>Height (Y): 1 cm <br>Depth (Z): 2 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. <b>Custom Options: Any Text</b> with limit<br> of 50 characters, <b>Any Font</b> provide name or <br>font file, <b>Color</b> we have same price for each <br>color, <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this keychain. You can tag <br>your stuff with this keychain if you have a lot <br>keys. For example mailbox, car name, house <br>name, your name, etc.");'>
+  <body onload=' updatePrice(); showNormalArrows_89(); initializeButtonState(); addDescription("✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 24 cm <br>Height (Y): 1 cm <br>Depth (Z): 2 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. <b>Custom Options: Any Text</b> with limit<br> of 50 characters, <b>Any Font</b> provide name or <br>font file, <b>Color</b> we have same price for each <br>color, <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this keychain. You can tag <br>your stuff with this keychain if you have a lot <br>keys. For example mailbox, car name, house <br>name, your name, etc.");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -445,7 +445,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -459,3 +459,4 @@
     </div>
   </body>
 </html>
+

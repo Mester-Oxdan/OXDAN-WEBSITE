@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!command) return;
 
     try {
-      const response = await fetch("files/php/promo_codes.php", {
+      const response = await fetch("/api/promo_codes.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ promo: command, csrf_token: window.CSRF_TOKEN })

@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -143,7 +143,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_08(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br><br>📐 Small: <br>Width (X): 9 cm <br>Height (Y): 8.1 cm <br>Depth (Z): 9 cm <br><br>📐 Medium: <br>Width (X): 13 cm <br>Height (Y): 11.7 cm <br>Depth (Z): 13 cm <br><br>📐 Large: <br>Width (X): 17 cm <br>Height (Y): 15.3 cm <br>Depth (Z): 17 cm <br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need something from following. <b><br>Custom Options: Any Text</b> with limit<br> of 50 characters, <b>Any Font</b> provide name or<br> font file, <b>Color</b> we have same price for each<br> color, <b>Material</b> PLA Or PETG. Thanks, now<br> lets talk about this flowerpot. This flowerpot <br>have square form with cut out cylinder inside. <br>Plant plants, use it as pencil case or use it for<br> something different. There is 3 sizes which we sell,<br> dimensions listed above. <b>Weights:</b> Small:<br> 111g or 0.25 lbs, Medium: 252 g or<br> 0.5555... lbs, Large: 491 g or 1.08 lbs.");'>
+  <body onload=' updatePrice(); showNormalArrows_08(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br><br>📐 Small: <br>Width (X): 9 cm <br>Height (Y): 8.1 cm <br>Depth (Z): 9 cm <br><br>📐 Medium: <br>Width (X): 13 cm <br>Height (Y): 11.7 cm <br>Depth (Z): 13 cm <br><br>📐 Large: <br>Width (X): 17 cm <br>Height (Y): 15.3 cm <br>Depth (Z): 17 cm <br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need something from following. <b><br>Custom Options: Any Text</b> with limit<br> of 50 characters, <b>Any Font</b> provide name or<br> font file, <b>Color</b> we have same price for each<br> color, <b>Material</b> PLA Or PETG. Thanks, now<br> lets talk about this flowerpot. This flowerpot <br>have square form with cut out cylinder inside. <br>Plant plants, use it as pencil case or use it for<br> something different. There is 3 sizes which we sell,<br> dimensions listed above. <b>Weights:</b> Small:<br> 111g or 0.25 lbs, Medium: 252 g or<br> 0.5555... lbs, Large: 491 g or 1.08 lbs.");'>
 
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
@@ -466,7 +466,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -480,3 +480,4 @@
     </div>
   </body>
 </html>
+

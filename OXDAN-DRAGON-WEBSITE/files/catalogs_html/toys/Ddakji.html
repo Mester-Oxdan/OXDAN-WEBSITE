@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -136,7 +136,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>📃 Materials: Paper, <br>Thick Paper Material <br>📐Max Size: <br>Width (X): 11 cm <br>Height (Y): 11 cm <br>Depth (Z): 0.5 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need help with something from <br>following. <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this lets talk about this Ddakji. <br>Ddakji is an old childrens game where you need <br>to flip oponent Ddakji. The basic idea is to hit your <br>opponents Ddakji 90 degrees so that it flips over. Its <br>very difficult at first, but once you get the trick, you <br>will win every time. ");'>
+  <body onload=' updatePrice(); showNormalArrows_2(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>📃 Materials: Paper, <br>Thick Paper Material <br>📐Max Size: <br>Width (X): 11 cm <br>Height (Y): 11 cm <br>Depth (Z): 0.5 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your<br> order. If you need help with something from <br>following. <b>Material</b> PLA Or PETG. Thanks, now <br>lets talk about this lets talk about this Ddakji. <br>Ddakji is an old childrens game where you need <br>to flip oponent Ddakji. The basic idea is to hit your <br>opponents Ddakji 90 degrees so that it flips over. Its <br>very difficult at first, but once you get the trick, you <br>will win every time. ");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -445,7 +445,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -459,3 +459,4 @@
     </div>
   </body>
 </html>
+

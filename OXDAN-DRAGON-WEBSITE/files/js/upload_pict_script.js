@@ -16,7 +16,7 @@ document.getElementById('upload-input').addEventListener('change', function(even
         return;
     }
 
-    fetch('../files/php/avatar_picture_storage/upload.php', {
+    fetch('/api/avatar_picture_storage/upload.php', {
         method: 'POST',
         body: formData
     })
@@ -24,7 +24,7 @@ document.getElementById('upload-input').addEventListener('change', function(even
     .then(data => {
         if (data.status === 'success') {
             Alert.success('Success! Image Uploaded Successfully.', 'Success', { displayDuration: 4000 });
-            document.getElementById('profile-pic').src = '../files/php/avatar_picture_storage/uploads/' + data.file;
+            document.getElementById('profile-pic').src = '/api/avatar_picture_storage/uploads/' + data.file;
         } else {
             if (data.error) {
                 Alert.error('Error! ' + data.error, 'Error', { displayDuration: 4000 });
@@ -39,11 +39,11 @@ document.getElementById('upload-input').addEventListener('change', function(even
 });
 
 window.onload = function() {
-    fetch('../files/php/avatar_picture_storage/get_uploaded_image.php')
+    fetch('/api/avatar_picture_storage/get_uploaded_image.php')
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success' && data.file) {
-            document.getElementById('profile-pic').src = '../files/php/avatar_picture_storage/' + data.file;
+            document.getElementById('profile-pic').src = '/api/avatar_picture_storage/' + data.file;
         } else {
             Alert.error('Error! Connecting To Database.', 'Error', { displayDuration: 4000 });
         }

@@ -22,7 +22,7 @@ function change_password(event) {
     if (recaptchaResponse === null || recaptchaResponse === "") {
         Alert.error('Error! Please Confirm You Are Not A Robot.', 'Error', { displayDuration: 4000 });
     } else {
-        fetch('../files/php/change_password.php', {
+        fetch('/api/change_password.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -13,7 +13,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
     <script>
       window.onload = function() {
-        playSound();
+        
       };
       function playSound() {
         setTimeout(() => {
@@ -133,7 +133,7 @@
       }
     </script>
   </head>
-  <body onload='playSound(); updatePrice(); showNormalArrows_89(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 7.874 cm <br>Height (Y): 1.27 cm <br>Depth (Z): 5.08 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order.<br> If you need help with something from following. <br><b>Material</b> PLA Or PETG. Thanks, now lets<br> talk about this Thanos Cross. Thanos Cross <br>is a cool necklace or keychain, you can wear it <br>anywhere, show it off to friends, and store small items <br>inside! You can open and close cross, its thick and durable. <br>Perfect for cosplay or just for fun. Get yours today!");'>
+  <body onload=' updatePrice(); showNormalArrows_89(); initializeButtonState(); addDescription("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>✋🏼 Handmade <br>📍 Ships from Pennsylvania! <br>🧱 Materials: Plastic, <br>PLA Plastic Material, <br>PETG Plastic Material <br>📐Max Size: <br>Width (X): 7.874 cm <br>Height (Y): 1.27 cm <br>Depth (Z): 5.08 cm<br><br><b>🔥Key Points: <br>Contact Us First!</b> Before you make your order.<br> If you need help with something from following. <br><b>Material</b> PLA Or PETG. Thanks, now lets<br> talk about this Thanos Cross. Thanos Cross <br>is a cool necklace or keychain, you can wear it <br>anywhere, show it off to friends, and store small items <br>inside! You can open and close cross, its thick and durable. <br>Perfect for cosplay or just for fun. Get yours today!");'>
     <audio id="mySound" src="../../resources/musics/sans_shop.mp3"></audio>
     <audio id="mySound_2" src="../../resources/musics/sans_shop.mp3"></audio>
     <div class="container">
@@ -453,7 +453,7 @@
       });
       
       async function loadProducts() {
-        const response = await fetch("../../php/get_products.php");
+        const response = await fetch("/api/get_products.php");
         const products = await response.json();
         return products;
       }
@@ -467,3 +467,4 @@
     </div>
   </body>
 </html>
+

@@ -57,7 +57,7 @@ function register(event) {
     recaptcha_response: recaptchaResponse
   };
 
-  fetch('../files/php/register.php', {
+  fetch('/api/register.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ function requestPasswordReset(email) {
 
   Alert.info('Sending password reset code...', 'Info', { displayDuration: 2000 });
 
-  fetch('../files/php/send_verification.php', {
+  fetch('/api/send_verification.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ function startGoogleLogin() {
 function handleCredentialResponse(response) {
   const state = window.OAUTH_STATE;
   
-  fetch("files/php/oauth_google.php", {
+  fetch("/api/oauth_google.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 

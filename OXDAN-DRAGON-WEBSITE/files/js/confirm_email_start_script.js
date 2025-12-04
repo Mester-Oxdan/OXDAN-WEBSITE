@@ -4,7 +4,7 @@ async function confirm_email(event) {
   const code = codeInput.value;
   const confirmData = { code, csrf_token: window.CSRF_TOKEN };
 
-  fetch('../files/php/confirm_email.php', {
+  fetch('/api/confirm_email.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(confirmData)
@@ -137,7 +137,7 @@ function resendEmail() {
   resendLink.style.pointerEvents = 'none';
   resendLink.style.opacity = '0.5';
 
-  fetch('../files/php/resend_email.php', {
+  fetch('/api/resend_email.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ type: 'confirm', csrf_token: window.CSRF_TOKEN })

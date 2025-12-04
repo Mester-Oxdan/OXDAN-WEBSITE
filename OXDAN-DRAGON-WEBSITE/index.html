@@ -1,76 +1,1756 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
-    <meta name="description" content="Get started with Oxdan Praduction today! Shop at our store and download our products for free — no sign-up needed. Enjoy a wonderful time and exclusive offers, just for you.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OXDAN WEBSITE</title>
-    <link id="logo-icon" rel="icon" type="image/png" href="files/resources/images/my_dragon_ico.ico">
-    <link rel="stylesheet" href="files/css/minified/index_style.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2281387454588748" crossorigin="anonymous"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        function getSeason(date) {
-          const month = date.getMonth();
-          return (month === 11 || month === 0 || month === 1) ? "winter" : "other";
+    <title>Oxdan Production</title>
+
+    <link rel="icon" href="files/resources/images/my_dragon_ico.ico">
+    <link rel="stylesheet" href="files/css/premium_design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="files/js/jquery.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        function setFavicon(path) {
-          const old = document.getElementById("logo-icon");
-          if (old) old.remove();
-
-          const link = document.createElement("link");
-          link.id = "logo-icon";
-          link.rel = "icon";
-          link.type = "image/x-icon";
-          link.href = path + "?v=" + Date.now();
-          document.head.appendChild(link);
+        html,
+        body {
+            height: 100%;
+            width: 100%;
         }
 
-        function applySeasonClassToBackground(season) {
-          const bgElement = document.querySelector(".bg_image_dragon");
-          if (!bgElement) return;
-          bgElement.classList.add(season);
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow: hidden;
         }
 
-        const currentSeason = getSeason(new Date());
-
-        if (currentSeason === "winter") {
-          setFavicon("files/resources/images/my_dragon_winter_ico.ico");
-        } else {
-          setFavicon("files/resources/images/my_dragon_ico.ico");
+        /* SUBTLE CURSOR GLOW */
+        #cursorGlow {
+            position: fixed;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999999;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(150, 200, 255, 0.04) 40%, transparent 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            filter: blur(2px);
         }
 
-        applySeasonClassToBackground(currentSeason);
-      });
-    </script>
-  </head>
-  <body>
-    <div class="bg_image_dragon"></div>
-    <div class="bg-text">
-      <div class="container">
-        <div class="header" style="font-family: Arial, sans-serif;">
-          CHOOSE OPTION:
+        #cursorGlowR {
+            position: fixed;
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999998;
+            background: radial-gradient(circle, rgba(255, 120, 150, 0.03) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            filter: blur(20px);
+            animation: glitchR 0.8s infinite;
+        }
+
+        #cursorGlowB {
+            position: fixed;
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999997;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.04) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            filter: blur(15px);
+            animation: glitchB 1s infinite;
+        }
+
+        @keyframes glitchR {
+
+            0%,
+            100% {
+                transform: translate(calc(-50% + 2px), calc(-50% - 1px));
+            }
+
+            50% {
+                transform: translate(calc(-50% - 2px), calc(-50% + 1px));
+            }
+        }
+
+        @keyframes glitchB {
+
+            0%,
+            100% {
+                transform: translate(calc(-50% - 2px), calc(-50% + 1px));
+            }
+
+            50% {
+                transform: translate(calc(-50% + 2px), calc(-50% - 1px));
+            }
+        }
+
+        /* TRAILING PARTICLES */
+        .cursor-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999990;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(150, 200, 255, 0.5) 50%, transparent 100%);
+            animation: particleFade 0.6s ease-out forwards;
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.1) translateY(-20px);
+            }
+        }
+
+        /* CLICK RIPPLE */
+        .click-ripple {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999989;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: rippleExpand 0.5s ease-out forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+
+            100% {
+                width: 120px;
+                height: 120px;
+                opacity: 0;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .clock {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50px);
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 120px);
+            font-weight: 800;
+            position: relative;
+            cursor: default;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: white;
+            clip-path: circle(0% at var(--mouse-x, 50%) var(--mouse-y, 50%));
+            transition: clip-path 0.3s ease;
+        }
+
+        .hero h1:hover::before {
+            clip-path: circle(20% at var(--mouse-x, 50%) var(--mouse-y, 50%));
+        }
+
+        .split-view {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .split-panel {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            transition: flex 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            cursor: pointer;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .split-panel:last-child {
+            border-right: none;
+        }
+
+        .split-view:not(.expanding) .split-panel:hover {
+            flex: 1.3;
+        }
+
+        .split-view:not(.expanding):hover .split-panel:not(:hover) {
+            flex: 0.7;
+            opacity: 0.6;
+        }
+
+        .split-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+            transition: background 0.5s;
+        }
+
+        .split-panel:hover .split-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .split-preview {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            max-width: 600px;
+            padding: 40px;
+        }
+
+        .split-preview h2 {
+            font-size: clamp(50px, 8vw, 100px);
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .split-preview p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+        }
+
+        .full-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0a0a0a;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 120px 40px 80px;
+            transition: opacity 0.5s;
+        }
+
+        .full-content.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .section-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .content-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+
+        .content-inner h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-section {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .story-hero h1 {
+            font-size: clamp(60px, 10vw, 120px);
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-text {
+            font-size: clamp(20px, 3vw, 32px);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            min-height: 50vh;
+            margin: 80px 0;
+            text-align: left;
+        }
+
+        .feature-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .feature-text h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .feature-text p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .feature-image-container {
+            flex: 1.5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
+        }
+
+        .feature-image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .feature-image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .dashboard-section {
+            margin-top: 100px;
+            padding-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: white;
+            border: 1px solid transparent;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .section-intro {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 80px;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            background: #1c1c1e;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(255, 255, 255, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #2c2c2e;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+            position: relative;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 30000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            padding: 40px;
+        }
+
+        .product-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content-product {
+            background: #1c1c1e;
+            border-radius: 32px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            background: #2c2c2e;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .thumbnail-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 10px;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2c2c2e;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: white;
+        }
+
+        .modal-details h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .modal-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .modal-tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .modal-options {
+            margin-bottom: 30px;
+        }
+
+        .modal-options label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .modal-options select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .shop-links-popup {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .shop-links-popup.active {
+            display: block;
+        }
+
+        .shop-links-popup a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: #1c1c1e;
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 900px) {
+
+            .feature-row,
+            .feature-row.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-text {
+                padding: 0;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 80px 40px 40px;
+            font-size: 12px;
+            color: #86868b;
+            border-top: 1px solid #333;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            color: #f5f5f7;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: #86868b;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            text-decoration: underline;
+            color: #f5f5f7;
+        }
+
+        .footer-bottom {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- INTRO OVERLAY -->
+    <div id="introOverlay">
+        <div id="introLogo">
+            <img src="files/resources/images/my_dragon_ico.ico" alt="Oxdan" id="logoImage">
+            <div id="logoShine"></div>
         </div>
-        <div id="nav">
-          <ul>
-            <li onclick="redirectTo('register');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">REGISTRATION</li>
-            <li onclick="redirectTo('login');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">LOGIN</li>
-            <li onclick="redirectTo('skip');" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">SKIP</li>
-            <li onclick="window.history.back();" style="font-family: Arial, sans-serif; font-size: min(2.5vw, 2.5vh);">EXIT</li>
-          </ul>
-        </div>
-      </div>
+        <p id="introText">Click anywhere to enter</p>
     </div>
+    <style>
+        #introOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease-out
+        }
+
+        #introOverlay.fade-out {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        #introLogo {
+            position: relative;
+            width: 150px;
+            height: 150px
+        }
+
+        #logoImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0.3);
+            animation: logoFadeIn 1s ease-out forwards
+        }
+
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8)
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        #logoShine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+            animation: shineEffect 1.5s ease-in-out 0.8s forwards
+        }
+
+        @keyframes shineEffect {
+            0% {
+                left: -100%
+            }
+
+            100% {
+                left: 100%
+            }
+        }
+
+        #introText {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: textFadeIn 1s ease-out 2s forwards
+        }
+
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 80px 40px 40px;
+            font-size: 12px;
+            color: #86868b;
+            border-top: 1px solid #333;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            color: #f5f5f7;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: #86868b;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            text-decoration: underline;
+            color: #f5f5f7;
+        }
+
+        .footer-bottom {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <audio id="bgMusic" src="files/resources/musics/music.mp3" loop></audio>
+    <div id="cursorGlow"></div>
+    <div id="cursorGlowR"></div>
+    <div id="cursorGlowB"></div>
+
+    <div id="canvas-container"></div>
+    <div class="clock" id="clock">00:00:00</div>
+
+
+    <nav id="mainNav" style="opacity:0;pointer-events:none;">
+        <div style="font-weight: 700;">OXDAN</div>
+        <ul>
+            <li><a href="#" onclick="goToHero()">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/lists">Lists</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="screen hero" id="heroScreen">
+        <div style="text-align: center;">
+            <h1 data-text="Oxdan Production">Oxdan Production</h1>
+            <p style="font-size: 24px; color: rgba(255,255,255,0.6); margin-top: 20px;">The future of digital
+                interaction</p>
+
+        </div>
+    </div>
+
+    <div class="screen hidden" id="splitScreen">
+        <div class="split-view" id="splitView">
+            <div class="split-panel" id="consolePanel">
+                <div class="split-overlay"></div>
+                <div class="split-preview">
+                    <h2>Console</h2>
+                    <p>Developer toolkit & utilities</p>
+                </div>
+            </div>
+            <div class="split-panel" id="shopPanel">
+                <div class="split-overlay"></div>
+                <div class="split-preview">
+                    <h2>Shop</h2>
+                    <p>Premium 3D printed models</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-content" id="consoleContent">
+        <div class="section-canvas" id="consoleCanvas"></div>
+        <div class="content-inner">
+            <section class="story-section story-hero">
+                <h1 class="scroll-reveal-text">Dragon Console</h1>
+                <p class="story-text scroll-reveal-text">Not just a terminal. A gateway to absolute control.</p>
+            </section>
+            <section class="feature-row scroll-reveal-section">
+                <div class="feature-text">
+                    <h2>Sleek Interface</h2>
+                    <p>Command line reimagined for the modern era.</p>
+                </div>
+                <div class="feature-image-container"><img
+                        src="files/resources/images/dragon_console_images/Console_Start_Menu.webp" alt="Start Menu">
+                </div>
+            </section>
+            <section class="feature-row reverse scroll-reveal-section">
+                <div class="feature-text">
+                    <h2>Unleash Power</h2>
+                    <p>Execute complex tasks with simple commands.</p>
+                </div>
+                <div class="feature-image-container"><img
+                        src="files/resources/images/dragon_console_images/Console_Commands.webp" alt="Commands"></div>
+            </section>
+            <section class="feature-row scroll-reveal-section">
+                <div class="feature-text">
+                    <h2>Join the Elite</h2>
+                    <p>Become part of a community that pushes boundaries.</p>
+                </div>
+                <div class="feature-image-container"><img
+                        src="files/resources/images/dragon_console_images/Console_Rules.webp" alt="Rules"></div>
+            </section>
+            <section class="dashboard-section scroll-reveal-section">
+                <h2 style="text-align: center; font-size: 48px; margin-bottom: 60px;">Command Center</h2>
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <h3>Community Stats</h3>
+                        <div style="display: flex; gap: 40px; margin-top: 30px;">
+                            <div>
+                                <div class="stat-value" id="average-score">0.00</div>
+                                <div style="color: rgba(255,255,255,0.6); font-size: 13px;">Rating</div>
+                                <div id="stars-container" style="color: #ffd700; margin-top: 5px;"></div>
+                                <style>
+                                    footer {
+                                        background: #111;
+                                        padding: 60px 20px 40px;
+                                        font-size: 13px;
+                                        color: #86868b;
+                                        border-top: 1px solid #333;
+                                        margin-top: 80px;
+                                    }
+
+                                    .footer-content {
+                                        max-width: 1000px;
+                                        margin: 0 auto;
+                                        display: grid;
+                                        grid-template-columns: repeat(4, 1fr);
+                                        gap: 40px;
+                                    }
+
+                                    @media (max-width: 768px) {
+                                        .footer-content {
+                                            grid-template-columns: repeat(2, 1fr);
+                                            gap: 30px;
+                                        }
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        .footer-content {
+                                            grid-template-columns: 1fr;
+                                            text-align: center;
+                                        }
+                                    }
+
+                                    .footer-col h3 {
+                                        color: #f5f5f7;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        margin-bottom: 12px;
+                                    }
+
+                                    .footer-col ul {
+                                        list-style: none;
+                                        padding: 0;
+                                    }
+
+                                    .footer-col li {
+                                        margin-bottom: 8px;
+                                    }
+
+                                    .footer-col a {
+                                        color: #86868b;
+                                        text-decoration: none;
+                                        transition: color 0.2s;
+                                    }
+
+                                    .footer-col a:hover {
+                                        text-decoration: underline;
+                                        color: #f5f5f7;
+                                    }
+
+                                    .footer-bottom {
+                                        max-width: 1000px;
+                                        margin: 40px auto 0;
+                                        padding-top: 20px;
+                                        border-top: 1px solid #333;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        flex-wrap: wrap;
+                                        gap: 10px;
+                                    }
+
+                                    @media (max-width: 768px) {
+                                        .footer-bottom {
+                                            flex-direction: column;
+                                            align-items: center;
+                                            text-align: center;
+                                        }
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="stat-value" id="vote-count">0</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 13px;">Votes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Downloads</h3>
+                    <label style="display: flex; gap: 10px; margin-bottom: 20px; cursor: pointer;">
+                        <input type="checkbox" id="checkmark" style="width: auto;">
+                        <span style="font-size: 14px;">Agree to <a
+                                href="https://docs.google.com/document/d/1hHxuawuVX8bTFENoeNQP0q9BFuWlf6fUOVd23PFpXk0/edit"
+                                target="_blank" style="color: #2997ff;">Terms</a></span>
+                    </label>
+                    <button class="download-btn" id="downloadBtn_1" disabled><span><i class="fab fa-windows"></i>
+                            C/C++</span><i class="fas fa-download"></i></button>
+                    <button class="download-btn" id="downloadBtn_2" disabled><span><i class="fab fa-windows"></i>
+                            Python</span><i class="fas fa-download"></i></button>
+                </div>
+                <div class="card" style="grid-column: span 2;">
+                    <h3>Community</h3>
+                    <form id="commentForm"
+                        style="display:grid; grid-template-columns: 1fr 3fr auto; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" name="username" placeholder="Name" required>
+                        <input type="text" name="comment" placeholder="Comment..." required>
+                        <button type="submit" class="btn-premium">Post</button>
+                    </form>
+                    <div id="comments"></div>
+                    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+                        <button class="btn-premium outline nav-arrow prev">Previous</button>
+                        <button class="btn-premium outline nav-arrow next">Next</button>
+                    </div>
+                </div>
+        </div>
+        </section>
+
+        <!-- FOOTER -->
+
+
+
+
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/@Oxdan_Praduction" target="_blank">YouTube</a></li>
+                        <li><a href="https://www.tiktok.com/@oxdan_praduction" target="_blank">TikTok</a></li>
+                        <li><a href="https://instagram.com/oxdanpraduction" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100087125340188"
+                                target="_blank">Facebook</a></li>
+                        <li><a href="https://github.com/Mester-Oxdan" target="_blank">GitHub</a></li>
+                        <li><a href="https://www.thingiverse.com/oxdan_praduction/designs"
+                                target="_blank">Thingiverse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Shops</h3>
+                    <ul>
+                        <li><a href="https://www.tiktok.com/@oxdan_praduction_shop" target="_blank">TikTok Shop</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61558180556782" target="_blank">Facebook
+                                Shop</a></li>
+                        <li><a href="https://933791-66.myshopify.com/" target="_blank">Shopify Store</a></li>
+                        <li><a href="/#shopContent">3D Prints</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support Us</h3>
+                    <ul>
+                        <li><a href="https://www.buymeacoffee.com/oxdan" target="_blank">Buy Me A Coffee</a></li>
+                        <li><a href="#">Cash App: $BoHladii</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal & Info</h3>
+                    <ul>
+                        <li><a href="https://oxdan.com">Website</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="mailto:contact@oxdan.com">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright 2024 Oxdan Production. All rights reserved.</div>
+                <div>
+                    <a href="/privacy">Privacy</a> |
+                    <a href="/terms">Terms</a> |
+                    <a href="/sitemap">Sitemap</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+    </div>
+
+    <div class="full-content" id="shopContent">
+        <div class="section-canvas" id="shopCanvas"></div>
+        <div class="content-inner">
+            <h1>Premium Shop</h1>
+            <p class="section-intro">Handcrafted 3D printed models • Ships from Pennsylvania</p>
+            <div class="filter-buttons">
+                <button class="btn-premium outline" onclick="filterProducts('all')">All</button>
+                <button class="btn-premium outline" onclick="filterProducts('keychains')">Keychains</button>
+                <button class="btn-premium outline" onclick="filterProducts('toys')">Toys</button>
+                <button class="btn-premium outline" onclick="filterProducts('flowerpots')">Flower Pots</button>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h3>Social Media</h3>
+                        <ul>
+                            <li><a href="https://www.youtube.com/@Oxdan_Praduction" target="_blank">YouTube</a></li>
+                            <li><a href="https://www.tiktok.com/@oxdan_praduction" target="_blank">TikTok</a></li>
+                            <li><a href="https://instagram.com/oxdanpraduction" target="_blank">Instagram</a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=100087125340188"
+                                    target="_blank">Facebook</a></li>
+                            <li><a href="https://github.com/Mester-Oxdan" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.thingiverse.com/oxdan_praduction/designs"
+                                    target="_blank">Thingiverse</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Shops</h3>
+                        <ul>
+                            <li><a href="https://www.tiktok.com/@oxdan_praduction_shop" target="_blank">TikTok Shop</a>
+                            </li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61558180556782"
+                                    target="_blank">Facebook Shop</a></li>
+                            <li><a href="https://933791-66.myshopify.com/" target="_blank">Shopify Store</a></li>
+                            <li><a href="/#shopContent">3D Prints</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Support Us</h3>
+                        <ul>
+                            <li><a href="https://www.buymeacoffee.com/oxdan" target="_blank">Buy Me A Coffee</a></li>
+                            <li><a href="#">Cash App: $BoHladii</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Legal & Info</h3>
+                        <ul>
+                            <li><a href="https://oxdan.com">Website</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
+                            <li><a href="/terms">Terms of Service</a></li>
+                            <li><a href="mailto:contact@oxdan.com">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div>Copyright 2024 Oxdan Production. All rights reserved.</div>
+                    <div>
+                        <a href="/privacy">Privacy</a> |
+                        <a href="/terms">Terms</a> |
+                        <a href="/sitemap">Sitemap</a>
+                    </div>
+                </div>
+            </footer>
+            <style>
+                footer {
+                    background: #111;
+                    padding: 60px 20px 40px;
+                    font-size: 13px;
+                    color: #86868b;
+                    border-top: 1px solid #333;
+                    margin-top: 80px;
+                }
+
+                .footer-content {
+                    max-width: 1000px;
+                    margin: 0 auto;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 40px;
+                }
+
+                @media (max-width: 768px) {
+                    .footer-content {
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 30px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .footer-content {
+                        grid-template-columns: 1fr;
+                        text-align: center;
+                    }
+                }
+
+                .footer-col h3 {
+                    color: #f5f5f7;
+                    font-size: 13px;
+                    font-weight: 600;
+                    margin-bottom: 12px;
+                }
+
+                .footer-col ul {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                .footer-col li {
+                    margin-bottom: 8px;
+                }
+
+                .footer-col a {
+                    color: #86868b;
+                    text-decoration: none;
+                    transition: color 0.2s;
+                }
+
+                .footer-col a:hover {
+                    text-decoration: underline;
+                    color: #f5f5f7;
+                }
+
+                .footer-bottom {
+                    max-width: 1000px;
+                    margin: 40px auto 0;
+                    padding-top: 20px;
+                    border-top: 1px solid #333;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+
+                @media (max-width: 768px) {
+                    .footer-bottom {
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+                }
+            </style>
+        </div>
+    </div>
+    <!-- FOOTER -->
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="product-modal" id="productModal">
+        <div class="modal-content-product">
+            <button class="modal-close" onclick="closeProductModal()">×</button>
+            <div class="modal-gallery">
+                <div class="main-image" id="mainProductImage"></div>
+                <div class="thumbnail-strip" id="thumbnailStrip"></div>
+            </div>
+            <div class="modal-details">
+                <h2 id="modalProductName">Product Name</h2>
+                <div class="modal-price" id="modalProductPrice">$0.00</div>
+                <p class="modal-desc" id="modalProductDesc">Description</p>
+                <div class="modal-tags" id="modalProductTags"></div>
+                <div class="modal-options"><label>Material*</label><select>
+                        <option>PLA</option>
+                        <option>PETG</option>
+                        <option>ABS</option>
+                    </select></div>
+                <div class="modal-options"><label>Quantity*</label><select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select></div>
+                <div class="modal-info">
+                    <div>📍 Ships from Pennsylvania</div>
+                    <div>✅ Arrives in 3-5 days</div>
+                    <div>↩️ Returns within 7 days</div>
+                </div>
+                <div class="modal-badge">🎨 Handmade</div>
+                <button class="btn-premium" onclick="toggleShopLinks()"
+                    style="width: 100%; margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; font-weight: 600; border-radius: 12px; cursor: pointer;">See
+                    Online Shops!</button>
+                <div class="shop-links-popup" id="shopLinksPopup">
+                    <p><b>Available Shops:</b><br>*TikTok: <a href="https://www.tiktok.com/t/ZTFSf1193/"
+                            target="_blank">Visit</a> 🛒<br>*Shopify: <a href="https://933791-66.myshopify.com/"
+                            target="_blank">Visit</a> 🛒<br><br><b>Contact:</b><br>📞 +1 (412) 908-9359<br>✉️
+                        boterewertyu@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>C/C++ Console</h2>
+            <p style="margin: 20px 0;">Choose download:</p>
+            <a href="api/download_c_console_copy.php?file=installer" class="btn-premium"
+                style="display:block;margin-bottom:10px;">Installer</a>
+            <a href="api/download_c_console_copy.php?file=files" class="btn-premium outline"
+                style="display:block;">Files</a>
+            <button class="btn-premium outline" style="margin-top: 20px; border: none;"
+                onclick="closeModals()">Close</button>
+        </div>
+    </div>
+    <div id="modal_2" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Python Console</h2>
+            <p style="margin: 20px 0;">Choose download:</p>
+            <a href="api/download_python_console_copy.php?file=installer" class="btn-premium"
+                style="display:block;margin-bottom:10px;">Installer</a>
+            <a href="api/download_python_console_copy.php?file=files" class="btn-premium outline"
+                style="display:block;">Files</a>
+            <button class="btn-premium outline" style="margin-top: 20px; border: none;"
+                onclick="closeModals()">Close</button>
+        </div>
+    </div>
+
+    <audio id="mySound" src="files/resources/musics/undertale_shop.mp3"></audio>
+    <script src="files/js/three_bg.js"></script>
+
     <script>
-      function redirectTo(page) {
-        const routes = {
-          'register': '/register',
-          'login': '/login',
-          'skip': '/skip'
-        };
-        window.location.href = routes[page];
-      }
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ============ CURSOR GLOW ============
+        const cursorGlow = document.getElementById('cursorGlow');
+        const cursorGlowR = document.getElementById('cursorGlowR');
+        const cursorGlowB = document.getElementById('cursorGlowB');
+
+        let lastParticleTime = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX + 'px', y = e.clientY + 'px';
+            cursorGlow.style.left = x; cursorGlow.style.top = y;
+            cursorGlowR.style.left = x; cursorGlowR.style.top = y;
+            cursorGlowB.style.left = x; cursorGlowB.style.top = y;
+
+            // Trailing particles - spawn every 50ms
+            const now = Date.now();
+            if (now - lastParticleTime > 50) {
+                createParticle(e.clientX, e.clientY);
+                lastParticleTime = now;
+            }
+        });
+
+        // ============ TRAILING PARTICLES ============
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            const size = Math.random() * 6 + 3;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
+            particle.style.top = (y + (Math.random() - 0.5) * 20) + 'px';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 600);
+        }
+
+        // ============ CLICK RIPPLE ============
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.className = 'click-ripple';
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 500);
+        });
+
+        // ============ THREE.JS FOR SECTIONS ============
+        let sectionScenes = {};
+        function initThreeJSForSection(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container || sectionScenes[containerId]) return;
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.0006);
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 3000);
+            camera.position.z = 1000;
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+            const geometry = new THREE.BufferGeometry();
+            const positions = [], colors = [];
+            for (let i = 0; i < 1500; i++) {
+                positions.push((Math.random() * 2 - 1) * 1500, (Math.random() * 2 - 1) * 1500, (Math.random() * 2 - 1) * 1500);
+                colors.push(Math.random() * 0.3 + 0.2, Math.random() * 0.5 + 0.5, Math.random() * 0.3 + 0.7);
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 5, vertexColors: true, transparent: true, opacity: 0.9 }));
+            scene.add(particles);
+            sectionScenes[containerId] = { scene, camera, renderer, particles, active: true };
+            function animate() {
+                if (!sectionScenes[containerId] || !sectionScenes[containerId].active) return;
+                requestAnimationFrame(animate);
+                particles.rotation.y = Date.now() * 0.000025;
+                particles.rotation.x = Date.now() * 0.00001;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+        function destroyThreeJSForSection(containerId) {
+            if (sectionScenes[containerId]) {
+                sectionScenes[containerId].active = false;
+                sectionScenes[containerId].renderer.dispose();
+                document.getElementById(containerId).innerHTML = '';
+                delete sectionScenes[containerId];
+            }
+        }
+
+        // ============ PRODUCTS ============
+        const products = [
+            { id: 1, name: "Custom Keychain", price: "$1.99+", category: "keychains", desc: 'Custom Font, Color, Text!', tags: ["3d", "Keychain"], images: ["files/resources/images/3d_printing_shop_images/keychains/custom_keychain/custom_keychain_all.webp", "files/resources/images/3d_printing_shop_images/keychains/custom_keychain/custom_keychain_1.webp"] },
+            { id: 2, name: "Flower Pot", price: "$1.99+", category: "flowerpots", desc: 'Beautiful flower pot', tags: ["Flower", "Pot"], images: ["files/resources/images/3d_printing_shop_images/flower_pots/square_flower_pot/square_flower_pot_1.webp"] },
+            { id: 3, name: "Gonggi", price: "$2.99+", category: "toys", desc: 'Korean game', tags: ["Game", "Korea"], images: ["files/resources/images/3d_printing_shop_images/toys/gonggi/gonggi_1.webp"] },
+            { id: 4, name: "Flying Stone", price: "$1.99+", category: "toys", desc: 'Fun toy', tags: ["Toy"], images: ["files/resources/images/3d_printing_shop_images/toys/flying_stone/flying_stone_1.webp"] },
+            { id: 5, name: "Custom 3D Print", price: "$1.99+", category: "toys", desc: 'Any model you want!', tags: ["Custom", "3D"], images: ["files/resources/images/3d_printing_shop_images/toys/custom_3d_print/custom_3d_print_1.webp"] },
+            { id: 6, name: "120dB Whistle", price: "$1.99+", category: "toys", desc: 'Very loud!', tags: ["Whistle"], images: ["files/resources/images/3d_printing_shop_images/toys/whistle/whistle_1.webp"] },
+            { id: 7, name: "Thanos Cross", price: "$4.99+", category: "keychains", desc: 'Marvel keychain', tags: ["Marvel"], images: ["files/resources/images/3d_printing_shop_images/keychains/thanos_cross/thanos_cross_1.webp"] },
+            { id: 8, name: "Ddakji", price: "$0.99+", category: "toys", desc: 'Korean game', tags: ["Game"], images: ["files/resources/images/3d_printing_shop_images/toys/ddakji/ddakji_1.webp"] }
+        ];
+
+        setInterval(() => { const n = new Date(); document.getElementById('clock').textContent = `${String(n.getHours()).padStart(2, '0')}:${String(n.getMinutes()).padStart(2, '0')}:${String(n.getSeconds()).padStart(2, '0')}`; }, 1000);
+
+        const heroTitle = document.querySelector('.hero h1');
+        heroTitle.addEventListener('mousemove', (e) => {
+            const rect = heroTitle.getBoundingClientRect();
+            heroTitle.style.setProperty('--mouse-x', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+            heroTitle.style.setProperty('--mouse-y', `${((e.clientY - rect.top) / rect.height) * 100}%`);
+        });
+
+        const heroScreen = document.getElementById('heroScreen'), splitScreen = document.getElementById('splitScreen');
+        const consolePanel = document.getElementById('consolePanel'), shopPanel = document.getElementById('shopPanel');
+        const consoleContent = document.getElementById('consoleContent'), shopContent = document.getElementById('shopContent');
+        const splitView = document.getElementById('splitView');
+        let currentScreen = 'hero', canScroll = true, activePanel = null;
+
+        window.addEventListener('wheel', (e) => {
+            if (!canScroll) return;
+            if (currentScreen === 'hero' && e.deltaY > 0) { showSplit(); canScroll = false; setTimeout(() => canScroll = true, 800); }
+            else if (currentScreen === 'split' && e.deltaY < 0 && !activePanel) { showHero(); canScroll = false; setTimeout(() => canScroll = true, 800); }
+        });
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (activePanel) closeExpandedPanel(); else if (currentScreen === 'split') showHero(); } });
+
+        function showHero() { currentScreen = 'hero'; heroScreen.classList.remove('hidden'); splitScreen.classList.add('hidden'); if (activePanel) closeExpandedPanel(); }
+        function showSplit() { currentScreen = 'split'; heroScreen.classList.add('hidden'); splitScreen.classList.remove('hidden'); }
+        function goToHero() { showHero(); return false; }
+
+        function expandPanel(panel, content) {
+            if (activePanel) return;
+            activePanel = panel;
+            splitView.classList.add('expanding');
+            initThreeJSForSection(panel === consolePanel ? 'consoleCanvas' : 'shopCanvas');
+            gsap.to(content, { opacity: 1, duration: 0.5, onStart: () => { content.classList.add('active'); setTimeout(() => initScrollAnimations(content), 100); } });
+        }
+
+        function initScrollAnimations(container) {
+            container.querySelectorAll('.scroll-reveal-text').forEach((el, i) => gsap.fromTo(el, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: i * 0.2, scrollTrigger: { trigger: el, start: 'top 85%', scroller: container } }));
+            container.querySelectorAll('.scroll-reveal-section').forEach((s, i) => {
+                const text = s.querySelector('.feature-text'), image = s.querySelector('.feature-image-container');
+                if (text && image) {
+                    gsap.fromTo(text, { opacity: 0, x: i % 2 === 0 ? -50 : 50 }, { opacity: 1, x: 0, duration: 1, scrollTrigger: { trigger: s, start: 'top 70%', scroller: container } });
+                    gsap.fromTo(image, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.2, scrollTrigger: { trigger: s, start: 'top 70%', scroller: container } });
+                } else gsap.fromTo(s, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: s, start: 'top 80%', scroller: container } });
+            });
+            container.querySelectorAll('.product-card').forEach((p, i) => gsap.fromTo(p, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8, delay: i * 0.08, scrollTrigger: { trigger: p, start: 'top 85%', scroller: container } }));
+        }
+
+        function closeExpandedPanel() {
+            if (!activePanel) return;
+            destroyThreeJSForSection('consoleCanvas');
+            destroyThreeJSForSection('shopCanvas');
+            [consoleContent, shopContent].forEach(c => { ScrollTrigger.getAll().forEach(t => t.kill()); gsap.to(c, { opacity: 0, duration: 0.3, onComplete: () => c.classList.remove('active') }); });
+            splitView.classList.remove('expanding');
+            activePanel = null;
+        }
+
+        consoleContent.addEventListener('wheel', (e) => { if (consoleContent.scrollTop === 0 && e.deltaY < 0) { e.preventDefault(); closeExpandedPanel(); } });
+        shopContent.addEventListener('wheel', (e) => { if (shopContent.scrollTop === 0 && e.deltaY < 0) { e.preventDefault(); closeExpandedPanel(); } });
+        consolePanel.addEventListener('click', () => expandPanel(consolePanel, consoleContent));
+        shopPanel.addEventListener('click', () => expandPanel(shopPanel, shopContent));
+        consolePanel.addEventListener('wheel', (e) => { if (e.deltaY > 0 && !activePanel) expandPanel(consolePanel, consoleContent); });
+        shopPanel.addEventListener('wheel', (e) => { if (e.deltaY > 0 && !activePanel) expandPanel(shopPanel, shopContent); });
+
+        function renderProducts(cat = 'all') {
+            const grid = document.getElementById('productsGrid');
+            const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
+            grid.innerHTML = filtered.map(p => `<div class="product-card" onclick="openProductModal(${p.id})"><div class="product-image" style="background-image: url('${p.images[0]}');"><div class="favorite-btn" onclick="event.stopPropagation();"><i class="far fa-heart"></i></div></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-price">${p.price}</div></div></div>`).join('');
+        }
+        function filterProducts(cat) { renderProducts(cat); if (activePanel) setTimeout(() => initScrollAnimations(shopContent), 50); }
+        function openProductModal(id) {
+            const p = products.find(x => x.id === id); if (!p) return;
+            document.getElementById('modalProductName').textContent = p.name;
+            document.getElementById('modalProductPrice').textContent = p.price;
+            document.getElementById('modalProductDesc').textContent = p.desc;
+            document.getElementById('modalProductTags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+            document.getElementById('mainProductImage').style.backgroundImage = `url('${p.images[0]}')`;
+            document.getElementById('thumbnailStrip').innerHTML = p.images.map((img, i) => `<div class="thumbnail ${i === 0 ? 'active' : ''}" style="background-image: url('${img}');" onclick="changeMainImage('${img}', event)"></div>`).join('');
+            document.getElementById('productModal').classList.add('active');
+        }
+        function closeProductModal() { document.getElementById('productModal').classList.remove('active'); document.getElementById('shopLinksPopup').classList.remove('active'); }
+        function changeMainImage(url, e) { document.getElementById('mainProductImage').style.backgroundImage = `url('${url}')`; document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active')); e.target.classList.add('active'); }
+        function toggleShopLinks() { document.getElementById('shopLinksPopup').classList.toggle('active'); }
+        renderProducts();
+        function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active')); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('checkmark').addEventListener('change', function () { document.querySelectorAll('.download-btn').forEach(b => b.disabled = !this.checked); });
+            document.getElementById('downloadBtn_1').addEventListener('click', () => document.getElementById('modal').classList.add('active'));
+            document.getElementById('downloadBtn_2').addEventListener('click', () => document.getElementById('modal_2').classList.add('active'));
+            fetch('api/calculate_ratings.php').then(r => r.json()).then(d => {
+                document.getElementById('average-score').textContent = parseFloat(d.average_score).toFixed(2);
+                document.getElementById('vote-count').textContent = d.total_ratings;
+                const c = document.getElementById('stars-container'); c.innerHTML = '';
+                for (let i = 1; i <= 5; i++) c.innerHTML += parseFloat(d.average_score) >= i ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+            }).catch(() => { });
+            loadComments();
+        });
+
+        let commentIdx = 0;
+        function loadComments() {
+            fetch('api/fetch_comments.php').then(r => r.json()).then(d => {
+                const c = document.getElementById('comments'); c.innerHTML = '';
+                d.reverse().slice(commentIdx, commentIdx + 4).forEach(x => { const div = document.createElement('div'); div.className = 'comment-box'; div.innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;"><span style="font-weight:600;">${x.username}</span><span style="color:rgba(255,255,255,0.6);">${x.timestamp}</span></div><p style="color:rgba(255,255,255,0.8);">${x.comment}</p>`; c.appendChild(div); });
+            }).catch(() => { });
+        }
+        document.querySelector('.nav-arrow.prev').addEventListener('click', () => { if (commentIdx > 0) { commentIdx -= 4; loadComments(); } });
+        document.querySelector('.nav-arrow.next').addEventListener('click', () => { commentIdx += 4; loadComments(); });
+        document.getElementById('commentForm').addEventListener('submit', function (e) { e.preventDefault(); fetch('api/save_comment.php', { method: 'POST', body: new FormData(this) }).then(r => r.json()).then(res => { if (res.status === 'success') { loadComments(); this.reset(); } }); });
+        // INTRO CLICK HANDLER
+        document.getElementById('introOverlay').addEventListener('click', function () {
+            document.getElementById('bgMusic').play();
+            this.classList.add('fade-out');
+            document.getElementById('mainNav').style.opacity = '1';
+            document.getElementById('mainNav').style.pointerEvents = 'auto';
+        });
     </script>
-  </body>
+
+</body>
+
 </html>
+

@@ -24,7 +24,7 @@ function change_password(e) {
         return;
     }
     
-    fetch("../files/php/change_password_2.php", {
+    fetch("/api/change_password_2.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(r)
